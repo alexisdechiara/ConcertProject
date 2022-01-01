@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ConcertController!{% endblock %}
+
+{% block body %}
+    {% for concert in concerts %}
+        <li>{{  concert }}</li>
+    {% endfor %}
+{% endblock %}
