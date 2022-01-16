@@ -109,7 +109,50 @@
       <path value="$PROJECT_DIR$/vendor/doctrine/data-fixtures" />
       <path value="$PROJECT_DIR$/vendor/doctrine/doctrine-fixtures-bundle" />
       <path value="$PROJECT_DIR$/vendor/symfony/mime" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-normalizer - Copie" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php80 - Copie" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-icu - Copie" />
+      <path value="$PROJECT_DIR$/vendor/symfony/notifier - Copie" />
+      <path value="$PROJECT_DIR$/vendor/symfony/stopwatch - Copie" />
+      <path value="$PROJECT_DIR$/vendor/symfony/security-http - Copie" />
+      <path value="$PROJECT_DIR$/vendor/symfony/password-hasher - Copie" />
+      <path value="$PROJECT_DIR$/vendor/symfony/routing - Copie" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php73 - Copie" />
+      <path value="$PROJECT_DIR$/vendor/symfony/security-core - Copie" />
+      <path value="$PROJECT_DIR$/vendor/symfony/options-resolver - Copie" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php81 - Copie" />
+      <path value="$PROJECT_DIR$/vendor/symfony/mime - Copie" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-mbstring - Copie" />
+      <path value="$PROJECT_DIR$/vendor/symfony/proxy-manager-bridge - Copie" />
+      <path value="$PROJECT_DIR$/vendor/symfony/property-access - Copie" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-grapheme - Copie" />
+      <path value="$PROJECT_DIR$/vendor/symfony/service-contracts - Copie" />
+      <path value="$PROJECT_DIR$/vendor/symfony/translation - Copie" />
+      <path value="$PROJECT_DIR$/vendor/symfony/phpunit-bridge - Copie" />
+      <path value="$PROJECT_DIR$/vendor/symfony/validator - Copie" />
+      <path value="$PROJECT_DIR$/vendor/symfony/var-dumper - Copie" />
+      <path value="$PROJECT_DIR$/vendor/symfony/web-link - Copie" />
+      <path value="$PROJECT_DIR$/vendor/webmozart - Copie/assert" />
+      <path value="$PROJECT_DIR$/vendor/symfony/twig-bundle - Copie" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-idn - Copie" />
+      <path value="$PROJECT_DIR$/vendor/symfony/monolog-bundle - Copie" />
+      <path value="$PROJECT_DIR$/vendor/symfony/var-exporter - Copie" />
+      <path value="$PROJECT_DIR$/vendor/symfony/security-guard - Copie" />
+      <path value="$PROJECT_DIR$/vendor/symfony/serializer - Copie" />
+      <path value="$PROJECT_DIR$/vendor/symfony/string - Copie" />
+      <path value="$PROJECT_DIR$/vendor/symfony/security-csrf - Copie" />
+      <path value="$PROJECT_DIR$/vendor/symfony/translation-contracts - Copie" />
+      <path value="$PROJECT_DIR$/vendor/symfony/property-info - Copie" />
+      <path value="$PROJECT_DIR$/vendor/symfony/yaml - Copie" />
+      <path value="$PROJECT_DIR$/vendor/symfony/monolog-bridge - Copie" />
+      <path value="$PROJECT_DIR$/vendor/symfony/web-profiler-bundle - Copie" />
+      <path value="$PROJECT_DIR$/vendor/symfony/runtime - Copie" />
+      <path value="$PROJECT_DIR$/vendor/symfony/security-bundle - Copie" />
+      <path value="$PROJECT_DIR$/vendor/symfony/process - Copie" />
+      <path value="$PROJECT_DIR$/vendor/symfony/twig-bridge - Copie" />
+      <path value="$PROJECT_DIR$/vendor/twig - Copie/extra-bundle" />
+      <path value="$PROJECT_DIR$/vendor/twig - Copie/twig" />
     </include_path>
   </component>
-  <component name="PhpProjectSharedConfiguration" php_language_level="7.2" />
+  <component name="PhpProjectSharedConfiguration" php_language_level="8.0" />
 </project>

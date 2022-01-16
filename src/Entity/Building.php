@@ -37,12 +37,7 @@ class Building
     private $capacity;
 
     /**
-     * @ORM\Column(type="blob", nullable=true)
-     */
-    private $picture;
-
-    /**
-     * @ORM\OneToMany(targetEntity=hall::class, mappedBy="building", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Hall::class, mappedBy="building", orphanRemoval=true)
      */
     private $halls;
 
@@ -88,18 +83,6 @@ class Building
     public function setCapacity(?int $capacity): self
     {
         $this->capacity = $capacity;
-
-        return $this;
-    }
-
-    public function getPicture()
-    {
-        return $this->picture;
-    }
-
-    public function setPicture($picture): self
-    {
-        $this->picture = $picture;
 
         return $this;
     }

@@ -19,6 +19,11 @@ class Artist
     private $id;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $stageName;
+
+    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $firstName;
@@ -34,19 +39,36 @@ class Artist
     private $role;
 
     /**
-     * @ORM\Column(type="blob", nullable=true)
+     * @ORM\Column(type="string", nullable=true)
      */
     private $picture;
 
     /**
-     * @ORM\Column(type="string", length=8, nullable=true)
-     * @Assert\Choice({"Male", "Female", "Other"})
+     * @ORM\Column(type="integer", nullable=true)
+     * @Assert\Choice({0, 1, 2})
      */
     private $gender;
+
+    /**
+     * @ORM\Column(type="date", nullable=true)
+     */
+    private $birthDay;
 
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getStageName(): ?string
+    {
+        return $this->stageName;
+    }
+
+    public function setStageName(string $StageName): self
+    {
+        $this->stageName = $StageName;
+
+        return $this;
     }
 
     public function getFirstName(): ?string
@@ -105,6 +127,18 @@ class Artist
     public function setGender(?string $gender): self
     {
         $this->gender = $gender;
+
+        return $this;
+    }
+
+    public function getBirthDay(): ?\DateTimeInterface
+    {
+        return $this->birthDay;
+    }
+
+    public function setBirthDay(?\DateTimeInterface $birthDay): self
+    {
+        $this->birthDay = $birthDay;
 
         return $this;
     }

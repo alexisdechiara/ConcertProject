@@ -64,45 +64,19 @@ class StyleFixture extends Fixture
         $techno = new Style();
         $techno ->setName("techno");
 
-        $this->extracted($manager, $country, $blues, $disco, $electro, $folk, $funk, $hipHop, $jazz, $metal);
-        $this->extracted($manager, $pop, $punk, $rap, $reggae, $rnb, $rock, $salsa, $soul, $techno);
-        $manager->flush();
+        $french = new Style();
+        $french ->setName("french");
 
-
-        $this->addReference("country", $country);
-        $this->addReference("Blues", $blues);
-        $this->addReference("Disco", $disco);
-        $this->addReference("Electro", $electro);
-        $this->addReference("Folk", $folk);
-        $this->addReference("Funk", $funk);
-        $this->addReference("Hip-hop", $hipHop);
-        $this->addReference("Jazz", $jazz);
-        $this->addReference("Metal", $metal);
-        $this->addReference("Pop", $pop);
-        $this->addReference("Punk", $punk);
-        $this->addReference("Rap", $rap);
-        $this->addReference("Rnb", $rnb);
-        $this->addReference("Rock", $rock);
-        $this->addReference("Salsa", $salsa);
-        $this->addReference("Soul", $soul);
-        $this->addReference("Techno", $techno);
-    }
-
-    /**
-     * @param ObjectManager $manager
-     * @param Style $pop
-     * @param Style $punk
-     * @param Style $rap
-     * @param Style $reggae
-     * @param Style $rnb
-     * @param Style $rock
-     * @param Style $salsa
-     * @param Style $soul
-     * @param Style $techno
-     * @return void
-     */
-    public function extracted(ObjectManager $manager, Style $pop, Style $punk, Style $rap, Style $reggae, Style $rnb, Style $rock, Style $salsa, Style $soul, Style $techno): void
-    {
+        $manager->persist($country);
+        $manager->persist($blues);
+        $manager->persist($disco);
+        $manager->persist($electro);
+        $manager->persist($folk);
+        $manager->persist($french);
+        $manager->persist($funk);
+        $manager->persist($hipHop);
+        $manager->persist($jazz);
+        $manager->persist($metal);
         $manager->persist($pop);
         $manager->persist($punk);
         $manager->persist($rap);
@@ -112,5 +86,26 @@ class StyleFixture extends Fixture
         $manager->persist($salsa);
         $manager->persist($soul);
         $manager->persist($techno);
+        $manager->flush();
+
+
+        $this->addReference("country", $country);
+        $this->addReference("blues", $blues);
+        $this->addReference("disco", $disco);
+        $this->addReference("electro", $electro);
+        $this->addReference("folk", $folk);
+        $this->addReference("french", $french);
+        $this->addReference("funk", $funk);
+        $this->addReference("hipHop", $hipHop);
+        $this->addReference("jazz", $jazz);
+        $this->addReference("metal", $metal);
+        $this->addReference("pop", $pop);
+        $this->addReference("punk", $punk);
+        $this->addReference("rap", $rap);
+        $this->addReference("rnb", $rnb);
+        $this->addReference("rock", $rock);
+        $this->addReference("salsa", $salsa);
+        $this->addReference("soul", $soul);
+        $this->addReference("techno", $techno);
     }
 }

@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ConcertProject - Liste des groupes et artistes{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="text-center text-6xl mt-6 font-medium">Les groupes et artistes</h1>
+        <div class="grid grid-cols-4 gap-4 mt-16">
+            {% for band in bands %}
+                <a href="{{ path('bandShow', {'id': band.getId() }) }}" class="bg-[url('{{band.getArtists()|length == 1 ? (band.getArtists()|first).getPicture() : band.getProfileImage()}}')] bg-origin-border bg-cover bg-top border hover:bg-hovered ease-in-out duration-1000 rounded overflow-hidden flex-nowrap shadow-md cursor-pointer p-4">
+                    <div class="block text-2xl font-bold pt-16 text-white">
+                        {{  band.getName() }}
+                    </div>
+                    <div class="flex flex-row mt-2">
+                        {% for style in band.getStyles() %}
+                            <div class="inline-block text-md bg-white/50 text-white text-xs px-2 py-0.5 mx-1 border-0 rounded-lg uppercase font-medium">
+                                {{ style.getName() }}
+
+                            </div>
+                        {% endfor %}
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}
+
+
+

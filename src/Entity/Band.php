@@ -25,25 +25,36 @@ class Band
     private $name;
 
     /**
-     * @ORM\Column(type="blob", nullable=true)
+     * @ORM\Column(type="string", nullable=true)
      */
-    private $picture;
+    private $profileImage;
 
     /**
-     * @ORM\ManyToMany(targetEntity=artist::class, inversedBy="bands")
+     * @ORM\ManyToMany(targetEntity=Artist::class, inversedBy="bands")
      */
     private $artists;
 
 
     /**
-     * @ORM\ManyToMany(targetEntity=style::class)
+     * @ORM\ManyToMany(targetEntity=Style::class)
      */
     private $styles;
 
     /**
      * @ORM\OneToMany(targetEntity=Participate::class, mappedBy="band", orphanRemoval=true)
      */
+
     private $participates;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $description;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $backgroundImage;
 
 
     public function __construct()
@@ -70,14 +81,14 @@ class Band
         return $this;
     }
 
-    public function getPicture()
+    public function getProfileImage()
     {
-        return $this->picture;
+        return $this->profileImage;
     }
 
-    public function setPicture($picture): self
+    public function setProfileImage($profileImage): self
     {
-        $this->picture = $picture;
+        $this->profileImage = $profileImage;
 
         return $this;
     }
@@ -156,6 +167,30 @@ class Band
                 $participate->setBand(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    public function getBackgroundImage(): ?string
+    {
+        return $this->backgroundImage;
+    }
+
+    public function setBackgroundImage(?string $backgroundImage): self
+    {
+        $this->backgroundImage = $backgroundImage;
 
         return $this;
     }

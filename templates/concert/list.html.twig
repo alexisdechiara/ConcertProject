@@ -1,9 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ConcertController!{% endblock %}
+{% block title %}ConcertProject - liste des concerts{% endblock %}
 
 {% block body %}
-    {% for concert in concerts %}
-        <li>{{  concert }}</li>
-    {% endfor %}
+    <div class="container">
+        <h1 class="text-center text-6xl mt-6 font-medium">Les concerts</h1>
+        <div class="flex flex-row flex-nowrap gap-4 mt-16">
+
+        {% for concert in concerts %}
+
+            <a href="{{ path('concertShow', {'id': concert.getId() }) }}" class="w-64 h-32 bg-origin-border bg-cover bg-center border hover:bg-hovered ease-in-out duration-1000 rounded overflow-hidden flex-nowrap shadow-md cursor-pointer p-4 bg-[url('{{ concert.getImage() }}')]"></a>
+
+        {% endfor %}
+
+        </div>
+    </div>
 {% endblock %}

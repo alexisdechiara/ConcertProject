@@ -2,30 +2,38 @@
 
 namespace App\Controller;
 
+use App\Entity\Band;
+use App\Repository\ConcertRepository;
+use App\Repository\ParticipateRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class ConcertController extends AbstractController
 {
-    /**
-     * @Route("/concert", name="concert")
-     */
-    public function index(): Response
+
+     #[Route('/concerts', name:"concertList")]
+    public function list(ConcertRepository $concerts): Response
     {
-        return $this->render('concert/index.html.twig', [
-            'controller_name' => 'ConcertController',
+        return $this->render('concert/list.html.twig', [
+            'concerts' => $concerts->findBy(array(), array('date' => 'ASC'))
         ]);
     }
 
-    /**
-     * @Route("/list", name="list")
-     */
-    public function list(): Response
+    #[Route('/concert/{id}', name:"concertShow")]
+    public function show(ConcertRepository $concerts, ParticipateRepository $participates, int $id): Response
     {
-        return $this->render('concert/list.html.twig', [
-            'controller_name' => 'ConcertController',
-            'concerts' => ['A','B','C']
+        $mainBand = null;
+        $participates = $concerts->find($id)->getParticipates();
+
+        foreach ($participates as $participate) {
+            if($participate->getIsMainBand())
+                $mainBand = $participate->getBand();
+        }
+
+        return $this->render('concert/show.html.twig', [
+            'concert' => $concerts->find($id),
+            'mainBand' => $mainBand,
         ]);
     }
 }

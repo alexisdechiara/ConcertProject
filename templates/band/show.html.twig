@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Groupe | {{band.getName()}}{% endblock %}
+
+{% block body %}
+    <div class="shadow pb-4">
+        <div class="bg-[url('{{ band.getBackgroundImage() }}')] bg-cover bg-center h-64"></div>
+        <div class="container flex flex-col">
+            <div class="flex flex-row">
+                <div class="bg-[url('{{band.getArtists()|length == 1 ? (band.getArtists()|first).getPicture() : band.getProfileImage()}}')] bg-cover bg-top rounded -mt-16 h-48 w-48"></div>
+                <div class="ml-8 mt-4">
+                    <h2 class="text-3xl font-medium">{{ band.getName() }}</h2>
+                    <p class="whitespace-pre-line mt-2">{{ band.description }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container flex flex-col">
+        {% if band.getArtists()|length > 1%}
+
+            <div class="grid grid-cols-2 gap-8 mt-16 ">
+
+                {% for artist in band.getArtists() %}
+
+                    <div class="flex flex-row border rounded-lg overflow-hidden">
+                        <div class="bg-[url('{{ artist.getPicture() }}')] bg-cover bg-top h-24 w-24"></div>
+                        <div class="flex flex-col ml-4 place-content-center ml-8">
+                            <h3 class="block text-xl font-medium"> {{ artist.getStageName() }}</h3>
+                            <div class="flex flex-row">
+                                <span class="inline-flex"> {{ artist.getFirstName()}}&nbsp;{{ artist.getLastName() }}</span>
+                            </div>
+                            <span class="block text-slate-500">{{ artist.getRole() }}</span>
+                        </div>
+                    </div>
+
+                {%  endfor %}
+            </div>
+
+        {% endif %}
+
+    </div>
+
+{% endblock %}
+
+
+
