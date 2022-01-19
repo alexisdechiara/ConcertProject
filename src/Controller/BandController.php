@@ -3,6 +3,7 @@
     namespace App\Controller;
 
     use App\Repository\BandRepository;
+    use App\Repository\ConcertRepository;
     use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
     use Symfony\Component\HttpFoundation\Response;
     use Symfony\Component\Routing\Annotation\Route;
@@ -19,10 +20,11 @@
         }
 
          #[Route("/band/{id}", name: "bandShow")]
-        public function show(BandRepository $bandRepository, int $id): Response
+        public function show(BandRepository $bands, ConcertRepository $concerts, int $id): Response
         {
             return $this->render('band/show.html.twig', [
-                'band' => $bandRepository->find($id)
+                'band' => $bands->find($id),
+                'nextConcerts' => $concerts->findNextByBand($id),
             ]);
         }
     }

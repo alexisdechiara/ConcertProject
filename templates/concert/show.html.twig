@@ -6,7 +6,7 @@
 
     <div class="container">
         <div class="flex flex-col border rounded-lg {{ concert.getParticipates()|length > 1 ? 'my-12' : 'mt-12'}} overflow-hidden">
-            <div class="bg-[url('{{ concert.getImage() }}')] h-64 bg-cover bg-center"></div>
+            <img src="{{ concert.getCoverImage() }}" class="h-64 object-cover object-center"/>
             <div class="grid grid-cols-3 gap-4 p-4">
                 <div class="col-span-2">
                     <div class="flex flex-col">
@@ -16,7 +16,7 @@
                                 <h3 class="block text-2xl italic ">{{ mainBand.getName() }}</h3>
                             {% endif %}
                         </div>
-                        <div class="whitespace-pre-line	mb-4">
+                        <div class="whitespace-pre-line	mb-4 text-justify">
                             {% if concert.getDescription() is empty and mainBand!=null %}
                                 {{ mainBand.getDescription() }}
                             {% else %}

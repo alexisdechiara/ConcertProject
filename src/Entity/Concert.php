@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\OrderBy;
+use JetBrains\PhpStorm\Pure;
 
 /**
  * @ORM\Entity(repositoryClass=ConcertRepository::class)
@@ -23,7 +24,7 @@ class Concert
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $name;
+    private ?string $name;
 
     /**
      * @ORM\ManyToOne(targetEntity=Hall::class, inversedBy="concerts")
@@ -48,16 +49,21 @@ class Concert
     private $participates;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", nullable=true)
      */
-    private $image;
+    private $coverImage;
 
     /**
      * @ORM\Column(type="text", nullable=true)
      */
     private $description;
 
-    public function __construct()
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $bannerImage;
+
+    #[Pure] public function __construct()
     {
         $this->participates = new ArrayCollection();
     }
@@ -146,14 +152,14 @@ class Concert
         return $this;
     }
 
-    public function getImage(): ?string
+    public function getCoverImage(): ?string
     {
-        return $this->image;
+        return $this->coverImage;
     }
 
-    public function setImage(?string $image): self
+    public function setCoverImage(?string $coverImage): self
     {
-        $this->image = $image;
+        $this->coverImage = $coverImage;
 
         return $this;
     }
@@ -166,6 +172,18 @@ class Concert
     public function setDescription(?string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getBannerImage()
+    {
+        return $this->bannerImage;
+    }
+
+    public function setBannerImage($bannerImage): self
+    {
+        $this->bannerImage = $bannerImage;
 
         return $this;
     }

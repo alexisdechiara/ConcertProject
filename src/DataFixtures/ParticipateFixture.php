@@ -33,9 +33,17 @@ class ParticipateFixture extends Fixture implements DependentFixtureInterface
                                         ->setIsMainBand(false)
                                         ->setRunningPassage(1);
 
+        $suzaneToiToi                   = new Participate();
+        $suzaneToiToi                   ->setBand($this->getReference("suzaneBand"))
+                                        ->setConcert($this->getReference("toiToi"))
+                                        ->setDuration(new DateInterval('PT4H'))
+                                        ->setIsMainBand(true)
+                                        ->setRunningPassage(1);
+
         $manager->persist($pommeFaille);
         $manager->persist($calogeroCalogeroConcert);
         $manager->persist($maelleCalogeroConcert);
+        $manager->persist($suzaneToiToi);
         $manager->flush();
     }
 

@@ -15,7 +15,7 @@ class ArtistFixture extends Fixture
         $pomme      ->setStageName("Pomme")
                     ->setFirstName("Claire")
                     ->setLastName("Pommet")
-                    ->setPicture("https://www.bonsound.com/download/uploads/press-photos/pomme2019_4x6-1580244710.jpg")
+                    ->setPicture("img/artist/pomme-picture.jpg")
                     ->setGender(1)
                     ->setRole("Singer");
 
@@ -23,14 +23,14 @@ class ArtistFixture extends Fixture
         $calogero   ->setStageName("Calogero")
                     ->setFirstName("Calogero")
                     ->setLastName("Joseph Salvatore Maurici")
-                    ->setPicture("https://yt3.ggpht.com/ytc/AKedOLScqTO7c-oVvOtH6afRrc4BuXmVKBNWq4QzloL57Q=s900-c-k-c0x00ffffff-no-rj")
+                    ->setPicture("img/artist/calogero-picture.jpg")
                     ->setRole("Singer");
 
         $orelsan    = new Artist();
         $orelsan    ->setStageName("OrelSan")
                     ->setFirstName("Aurélien")
                     ->setLastName("Cotentin")
-                    ->setPicture("https://img.20mn.fr/FlZ5nnZiSOC6n7Vq-k0L1ik/768x492_rappeur-orelsan.jpg")
+                    ->setPicture("img/artist/orelsan-picture.jpg")
                     ->setGender(1)
                     ->setRole("Singer");
 
@@ -38,7 +38,7 @@ class ArtistFixture extends Fixture
         $angele     ->setStageName("Angèle")
                     ->setFirstName("Angèle")
                     ->setLastName("Van Laeken")
-                    ->setPicture("https://photosdestars.com/ressources/img/uploads/Ang%C3%A8le_Van%20Laeken/Angele_Van%20Laeken_portrait-visage-shooting_1559343335.png")
+                    ->setPicture("img/artist/angele-picture.jpg")
                     ->setGender(2)
                     ->setRole("Singer");
 
@@ -46,7 +46,7 @@ class ArtistFixture extends Fixture
         $bigflo     ->setStageName("Bigflo")
                     ->setFirstName("Florian")
                     ->setLastName("Ordonez")
-                    ->setPicture("https://anniversaire-celebrite.com/upload/250x333/bigflo-250.jpg")
+                    ->setPicture("img/artist/bigflo-picture.jpg")
                     ->setGender(1)
                     ->setRole("Singer");
 
@@ -54,7 +54,7 @@ class ArtistFixture extends Fixture
         $oli        ->setStageName("Oli")
                     ->setFirstName("Olivio")
                     ->setLastName("Ordonez")
-                    ->setPicture("https://static1.purepeople.com/articles/3/27/73/63/@/3915316-olivio-ordonez-oli-du-groupe-de-rap-bi-950x0-2.jpg")
+                    ->setPicture("img/artist/oli-picture.jpg")
                     ->setGender(1)
                     ->setRole("Singer");
 
@@ -62,7 +62,7 @@ class ArtistFixture extends Fixture
         $barbara    ->setStageName("Barbara Pravi")
                     ->setFirstName("Barbara")
                     ->setLastName("Piévic")
-                    ->setPicture("https://prmeng.rosselcdn.net/sites/default/files/dpistyles_v2/ena_16_9_extra_big/2021/02/08/node_163481/38326615/public/2021/02/08/B9726047101Z.1_20210208101505_000%2BG3THHIBH0.2-0.jpg?itok=ks3zsEMv1612866458")
+                    ->setPicture("img/artist/barbara-picture.jpg")
                     ->setGender(2)
                     ->setRole("Singer");
 
@@ -70,7 +70,7 @@ class ArtistFixture extends Fixture
         $hoshi      ->setStageName("Hoshi")
                     ->setFirstName("Mathilde")
                     ->setLastName("Gerner")
-                    ->setPicture("https://image-api.nrj.fr/medias/2018/10/photo-cover-album_5bb1dae7ac86a.jpg")
+                    ->setPicture("img/artist/hoshi-picture.jpg")
                     ->setGender(1)
                     ->setRole("Singer");
 
@@ -78,7 +78,7 @@ class ArtistFixture extends Fixture
         $benMazue   ->setStageName("Ben Mazué")
                     ->setFirstName("Benjamin")
                     ->setLastName("Mazuet")
-                    ->setPicture("https://i.f1g.fr/media/madame/1900x1900_crop/sites/default/files/img/2017/09/ben-mazue.jpg")
+                    ->setPicture("img/artist/benMazue-picture.jpg")
                     ->setGender(1)
                     ->setRole("Singer");
 
@@ -86,7 +86,7 @@ class ArtistFixture extends Fixture
         $maelle     ->setStageName("Maëlle")
                     ->setFirstName("Maëlle")
                     ->setLastName("Pistoia")
-                    ->setPicture("http://t3.gstatic.com/licensed-image?q=tbn:ANd9GcQzTd-NDSSVzpuReZIkqDWEGVKC1Gt7a4FyFhWEYa1J3Vbr-0tQNQTbLoUwrUSA")
+                    ->setPicture("img/artist/maelle-picture.webp")
                     ->setGender(2)
                     ->setRole("Singer");
 
@@ -94,7 +94,7 @@ class ArtistFixture extends Fixture
         $suzane     ->setStageName("Suzanne")
                     ->setFirstName("Océane")
                     ->setLastName("Colom")
-                    ->setPicture("https://www.lillelanuit.com/wp-content/uploads/2019/02/suzane.png")
+                    ->setPicture("img/artist/suzane-picture.png")
                     ->setGender(2)
                     ->setRole("Singer");
 
@@ -102,7 +102,7 @@ class ArtistFixture extends Fixture
         $gcm        ->setStageName("Grand Corps Malade")
                     ->setFirstName("Fabien")
                     ->setLastName("Marsaud")
-                    ->setPicture("https://media.resources.festicket.com/www/artists/GrandCorpsMalade.jpg")
+                    ->setPicture("img/artist/gcm-picture.jpg")
                     ->setGender(1)
                     ->setRole("Singer");
 
@@ -110,8 +110,16 @@ class ArtistFixture extends Fixture
         $louane     ->setStageName("Louane")
                     ->setFirstName("Anne")
                     ->setLastName("Peichert")
-                    ->setPicture("https://i.skyrock.net/9839/92339839/pics/3249161406_1_3_bnNAuljr.jpg")
+                    ->setPicture("img/artist/louane-picture.jpg")
                     ->setGender(2)
+                    ->setRole("Singer");
+
+        $stromae    = new Artist();
+        $stromae    ->setStageName("Stromae")
+                    ->setFirstName("Paul")
+                    ->setLastName("Van Haver")
+                    ->setPicture("img/artist/stromae-picture.jpg")
+                    ->setGender(1)
                     ->setRole("Singer");
 
         $manager->persist($pomme);
@@ -127,6 +135,7 @@ class ArtistFixture extends Fixture
         $manager->persist($suzane);
         $manager->persist($gcm);
         $manager->persist($louane);
+        $manager->persist($stromae);
         $manager->flush();
 
         $this->addReference("pomme", $pomme);
@@ -142,5 +151,6 @@ class ArtistFixture extends Fixture
         $this->addReference("suzane", $suzane);
         $this->addReference("gcm", $gcm);
         $this->addReference("louane", $louane);
+        $this->addReference("stromae", $stromae);
     }
 }

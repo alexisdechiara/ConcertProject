@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}ConcertProject - Inscription{% endblock %}
 
 {% block body %}
     <div class="container w-1/2">
@@ -11,9 +11,10 @@
                 {{ form_row(registrationForm.firstName) }}
                 {{ form_row(registrationForm.lastName) }}
             </div>
-                {{ form_row(registrationForm.email) }}
-                {{ form_row(registrationForm.plainPassword)}}
-                {{ form_end(registrationForm) }}
+            {{ form_row(registrationForm.email) }}
+            {{ form_row(registrationForm.plainPassword)}}
+            {{ form_end(registrationForm) }}
+            <a href="{{ path('app_login') }}" class="mt-4 text-indigo-600 hover:text-indigo-800 block text-center w-full italic">Déjà un compte ?</a>
         </div>
     </div>
 {% endblock %}

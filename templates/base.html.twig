@@ -5,6 +5,7 @@
         <title>{% block title %}{% endblock %}</title>
         <link rel="icon" href="{{ asset('img/favicon.png') }}">
         <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/index.min.css" />
         <script>
 	        tailwind.config = {
 		        theme: {
@@ -15,7 +16,7 @@
                         'auto': 'auto',
                         'cover': 'cover',
                         'contain': 'contain',
-                        'hovered': '125%',
+                        'hovered': '150%',
                     },
 		        },
 	        }
@@ -35,4 +36,5 @@
     <body>
         {% block body %}{% endblock %}
     </body>
+    <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>
 </html>

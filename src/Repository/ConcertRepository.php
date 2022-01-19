@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Concert;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
  * @method Concert|null find($id, $lockMode = null, $lockVersion = null)
@@ -19,32 +20,93 @@ class ConcertRepository extends ServiceEntityRepository
         parent::__construct($registry, Concert::class);
     }
 
-    // /**
-    //  * @return Concert[] Returns an array of Concert objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
+    /**
+     * @param $id
+     * @return mixed All the concerts that are going to take place for the band
+     */
+    public function findNextByBand($id): mixed {
         return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('c.id', 'ASC')
-            ->setMaxResults(10)
+            ->join('c.participates', 'p')
+            ->join('p.band', 'b')
+            ->where('b.id = :id')
+            ->andWhere('c.date > :date')
+            ->setParameter('id', $id)
+            ->setParameter('date', new \DateTime())
+            ->orderBy('c.date', 'ASC')
             ->getQuery()
             ->getResult()
-        ;
+            ;
     }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?Concert
-    {
+    /**
+     * @return mixed All the concerts that are going to take place
+     */
+    public function findNext(): mixed {
         return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+                    ->where('c.date > :date')
+                    ->setParameter('date', new \DateTime())
+                    ->orderBy('c.date', 'ASC')
+                    ->getQuery()
+                    ->getResult()
+            ;
     }
-    */
+
+    /**
+     * @return mixed All the concerts that are going to take place today
+     */
+    public function findToday(): mixed {
+        $today = new \DateTime();
+        return $this->createQueryBuilder('c')
+            ->where('c.date = :date')
+            ->setParameter('date', $today->format('d'))
+            ->orderBy('c.date', 'ASC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+    /**
+     * @return mixed All the concerts that are going to take place this week, today excluded
+     */
+    public function findThisWeek(): mixed {
+        $today = new \DateTime();
+        return $this->createQueryBuilder('c')
+            ->where('c.date = :week')
+            ->andWhere('c.date != :day')
+            ->setParameter('week', $today->format('W'))
+            ->setParameter('day', $today->format('d'))
+            ->orderBy('c.date', 'ASC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+    /**
+     * @return mixed All the concerts that are going to take place this week, today excluded
+     */
+    public function findThisMonth(): mixed {
+        $today = new \DateTime();
+        return $this->createQueryBuilder('c')
+            ->where('c.date = :month')
+            ->andWhere('c.date != :week')
+            ->setParameter('month', $today->format('m'))
+            ->setParameter('week', $today->format('W'))
+            ->orderBy('c.date', 'ASC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+    /**
+     * @return mixed All concerts that have already taken place
+     */
+    public function findPrevious(): mixed {
+        return $this->createQueryBuilder('c')
+            ->where('c.date <= :date')
+            ->setParameter('date', new \DateTime())
+            ->orderBy('c.date', 'ASC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 }

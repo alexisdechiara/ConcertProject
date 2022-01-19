@@ -1,45 +1,61 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Groupe | {{band.getName()}}{% endblock %}
+{% block title %}Groupe - {{band.getName()}}{% endblock %}
 
 {% block body %}
+
     <div class="shadow pb-4">
-        <div class="bg-[url('{{ band.getBackgroundImage() }}')] bg-cover bg-center h-64"></div>
+        <div class="bg-[url('{{ asset(band.getBannerImage()|default() ? band.getBannerImage() : (band.getArtists()|first).getPicture()) }}')] bg-cover bg-center h-64"></div>
         <div class="container flex flex-col">
             <div class="flex flex-row">
-                <div class="bg-[url('{{band.getArtists()|length == 1 ? (band.getArtists()|first).getPicture() : band.getProfileImage()}}')] bg-cover bg-top rounded -mt-16 h-48 w-48"></div>
+                <div class="bg-[url('{{ asset(band.getArtists()|length == 1 ? (band.getArtists()|first).getPicture() : band.getCoverImage()) }}')] bg-cover bg-top rounded -mt-16 h-48 w-48"></div>
                 <div class="ml-8 mt-4">
                     <h2 class="text-3xl font-medium">{{ band.getName() }}</h2>
-                    <p class="whitespace-pre-line mt-2">{{ band.description }}</p>
+                    <p class="whitespace-pre-line mt-2 text-justify	">{{ band.description }}</p>
+                    {% if band.getStyles() is not empty %}
+                        <div class="flex flex-row">
+                            {% for style in band.getStyles() %}
+                                <div class="flex text-sm bg-slate-400 text-white uppercase font-medium py-0.5 px-2 my-2 mr-1
+                                            text-center rounded-md">
+                                    {{ style.getName() }}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
                 </div>
             </div>
         </div>
     </div>
 
-
-    <div class="container flex flex-col">
+    <div class="container flex flex-col my-8">
         {% if band.getArtists()|length > 1%}
-
             <div class="grid grid-cols-2 gap-8 mt-16 ">
-
                 {% for artist in band.getArtists() %}
-
-                    <div class="flex flex-row border rounded-lg overflow-hidden">
-                        <div class="bg-[url('{{ artist.getPicture() }}')] bg-cover bg-top h-24 w-24"></div>
-                        <div class="flex flex-col ml-4 place-content-center ml-8">
-                            <h3 class="block text-xl font-medium"> {{ artist.getStageName() }}</h3>
-                            <div class="flex flex-row">
-                                <span class="inline-flex"> {{ artist.getFirstName()}}&nbsp;{{ artist.getLastName() }}</span>
+                    <div class="flex justify-center">
+                        <div class="flex flex-col md:flex-row md:max-w-xl rounded-lg bg-white shadow-lg w-full h-32">
+                            <img class=" w-full h-96 md:h-auto object-cover object-top md:w-32 rounded-t-lg md:rounded-none md:rounded-l-lg" src="{{ asset(artist.getPicture()) }}" alt="" />
+                            <div class="p-6 flex flex-col justify-start">
+                                <h5 class="text-gray-900 text-xl font-medium mb-2">{{ artist.getStageName() }}</h5>
+                                <p class="text-gray-700 text-base mb-4">
+                                    {{ artist.getFirstName()}}&nbsp;{{ artist.getLastName() }}
+                                </p>
+                                <p class="text-gray-600 text-xs">{{ artist.getRole() }}</p>
                             </div>
-                            <span class="block text-slate-500">{{ artist.getRole() }}</span>
                         </div>
                     </div>
-
                 {%  endfor %}
             </div>
-
         {% endif %}
 
+        {% if nextConcerts|length is not null%}
+                <div class="grid auto-rows-auto gap-4 mt-8">
+                    {% for concert in nextConcerts %}
+                        <a href="{{ path('concertShow', {'id': concert.getId() }) }}"
+                           class="w-full h-64 bg-origin-border bg-cover bg-center border hover:bg-hovered ease-in-out duration-1000
+                           rounded overflow-hidden flex-nowrap shadow-md cursor-pointer p-4 bg-[url('{{ asset(concert.getCoverImage()) }}')]"></a>
+                    {% endfor %}
+                </div>
+        {% endif %}
     </div>
 
 {% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ConcertProject - {{ user.getFirstName() }} {{ user.getLastName() }}{% endblock %}
+
+{% block body %}
+
+    <div class="container w-8/12">
+        <div class="mt-16">
+            {{ form_start(profileForm) }}
+            <div class="grid grid-cols-12 gap-4">
+                {%if user.getProfileImage() is not empty %}
+                    <img class="col-span-3 rounded-full w-32 shadow" src=" {{ user.getProfileImage() }}">
+                {% else %}
+                    <img class="col-span-3 rounded-full w-32 shadow" src=" {{  asset('img/user-dark.svg') }}">
+                {% endif %}
+                <div class="col-span-9 flex flex-col">
+                    <div class="grid grid-cols-2 gap-4">
+                        {{ form_row(profileForm.firstName) }}
+                        {{ form_row(profileForm.lastName) }}
+                    </div>
+                    {{ form_row(profileForm.email) }}
+                    {{ form_row(profileForm.profileImage) }}
+                    {{ form_row(profileForm.password) }}
+                    {{ form_row(profileForm.submit) }}
+                </div>
+            </div>
+            {{ form_end(profileForm) }}
+
+        </div>
+    </div>
+
+{% endblock %}

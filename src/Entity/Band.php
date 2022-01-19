@@ -6,6 +6,7 @@ use App\Repository\BandRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use JetBrains\PhpStorm\Pure;
 
 /**
  * @ORM\Entity(repositoryClass=BandRepository::class)
@@ -27,7 +28,7 @@ class Band
     /**
      * @ORM\Column(type="string", nullable=true)
      */
-    private $profileImage;
+    private $coverImage;
 
     /**
      * @ORM\ManyToMany(targetEntity=Artist::class, inversedBy="bands")
@@ -54,10 +55,10 @@ class Band
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $backgroundImage;
+    private $bannerImage;
 
 
-    public function __construct()
+    #[Pure] public function __construct()
     {
         $this->artists = new ArrayCollection();
         $this->styles = new ArrayCollection();
@@ -81,14 +82,26 @@ class Band
         return $this;
     }
 
-    public function getProfileImage()
+    public function getCoverImage()
     {
-        return $this->profileImage;
+        return $this->coverImage;
     }
 
-    public function setProfileImage($profileImage): self
+    public function setCoverImage($coverImage): self
     {
-        $this->profileImage = $profileImage;
+        $this->coverImage = $coverImage;
+
+        return $this;
+    }
+
+    public function getBannerImage(): ?string
+    {
+        return $this->bannerImage;
+    }
+
+    public function setBannerImage(?string $bannerImage): self
+    {
+        $this->bannerImage = $bannerImage;
 
         return $this;
     }
@@ -179,18 +192,6 @@ class Band
     public function setDescription(?string $description): self
     {
         $this->description = $description;
-
-        return $this;
-    }
-
-    public function getBackgroundImage(): ?string
-    {
-        return $this->backgroundImage;
-    }
-
-    public function setBackgroundImage(?string $backgroundImage): self
-    {
-        $this->backgroundImage = $backgroundImage;
 
         return $this;
     }
