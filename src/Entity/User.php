@@ -54,6 +54,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $profileImage;
 
+    /**
+     * @ORM\Column(type="date")
+     */
+    private $creationDate;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -175,6 +180,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setProfileImage($profileImage): self
     {
         $this->profileImage = $profileImage;
+
+        return $this;
+    }
+
+    public function getCreationDate(): ?\DateTimeInterface
+    {
+        return $this->creationDate;
+    }
+
+    public function setCreationDate(\DateTimeInterface $creationDate): self
+    {
+        $this->creationDate = $creationDate;
 
         return $this;
     }

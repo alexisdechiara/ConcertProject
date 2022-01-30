@@ -36,32 +36,15 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $this->_em->flush();
     }
 
-    // /**
-    //  * @return UserFixture[] Returns an array of UserFixture objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('u')
-            ->andWhere('u.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('u.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?UserFixture
+    public function countByMonthRegistration(): array|float|int|string
     {
         return $this->createQueryBuilder('u')
-            ->andWhere('u.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+                    ->select('COUNT(DISTINCT u.id) as value, MONTH(u.creationDate) as monthNumber')
+                    ->where('YEAR(u.creationDate) = :now')
+                    ->groupBy('monthNumber')
+                    ->setParameter('now', date('Y'))
+                    ->getQuery()
+                    ->getArrayResult();
     }
-    */
 }

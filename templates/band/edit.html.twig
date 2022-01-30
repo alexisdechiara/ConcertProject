@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+
+<div class="grid grid-cols-9">
+    <div class="col-span-1">
+        {% include 'admin/aside.html.twig' %}
+    </div>
+    <div class="col-span-8">
+        <div class="flex flex-col bg-slate-50 h-full p-8">
+            {{ form_start(bandForm) }}
+            {{ form_row(bandForm.name) }}
+            {{ form_row(bandForm.description) }}
+            {{ form_row(bandForm.artists) }}
+            {{ form_row(bandForm.coverImage) }}
+            {{ form_row(bandForm.bannerImage) }}
+            {{ form_row(bandForm.submit) }}
+            {{ form_end(bandForm) }}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+

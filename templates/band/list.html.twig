@@ -7,7 +7,7 @@
         <h1 class="text-center text-6xl mt-6 font-medium">Les groupes et artistes</h1>
         <div class="grid grid-cols-4 gap-4 mt-16">
             {% for band in bands %}
-                <a href="{{ path('bandShow', {'id': band.getId() }) }}" class="bg-[url('{{ asset(band.getArtists()|length == 1 and band.getBannerImage()|default() ? band.getCoverImage() :(band.getArtists()|first).getPicture() ) }}')] bg-origin-border bg-cover bg-top border hover:scale-110 ease-in-out duration-300 rounded overflow-hidden flex-nowrap shadow-md cursor-pointer p-4">
+                <a href="{{ path('bandShow', {'id': band.getId() }) }}" class="bg-[url('{{ asset(band.getCoverImage() ? band.getCoverImage() : band.getArtists()|length != 1 ? band.getBannerImage() : (band.getArtists()|first).getPicture()) }}')] bg-origin-border bg-cover bg-top border hover:scale-110 ease-in-out duration-300 rounded overflow-hidden flex-nowrap shadow-md cursor-pointer p-4">
                     <div class="block text-2xl font-bold pt-16 text-white">
                         {{  band.getName() }}
                     </div>

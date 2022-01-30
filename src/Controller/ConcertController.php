@@ -3,18 +3,24 @@
 namespace App\Controller;
 
 use App\Entity\Band;
+use App\Entity\Concert;
+use App\Form\BandFormType;
+use App\Form\ConcertFormType;
 use App\Repository\BandRepository;
 use App\Repository\ConcertRepository;
 use App\Repository\ParticipateRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\NonUniqueResultException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+#[Route('concert')]
 class ConcertController extends AbstractController
 {
 
-     #[Route('/concerts', name:"concertList")]
+     #[Route('/', name:"concertList")]
     public function list(ConcertRepository $concerts): Response
     {
         return $this->render('concert/list.html.twig', [
@@ -25,11 +31,60 @@ class ConcertController extends AbstractController
         ]);
     }
 
-    #[Route('/concert/{id}', name:"concertShow")]
+    #[Route("/new", name: "concertNew")]
+    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $concert = new Concert();
+        $form = $this->createForm(ConcertFormType::class, $concert);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $show = $form->getData();
+
+            $entityManager->persist($show);
+            $entityManager->flush();
+            return $this->redirectToRoute("adminConcerts");
+        }
+        return $this->render('concert/edit.html.twig', [
+            'concertForm' => $form->createView(),
+        ]);
+    }
+
+    #[Route('/{id}', name:"concertShow")]
     public function show(ConcertRepository $concerts, bandRepository $bands, int $id): Response {
         return $this->render('concert/show.html.twig', [
             'concert' => $concerts->find($id),
             'mainBand' => $bands->findMainOfConcert($id)
         ]);
+    }
+
+    #[Route("/{id}/edit", name: "concertEdit")]
+    public function edit(ConcertRepository $concerts, Request $request, EntityManagerInterface $entityManager, int $id): Response
+    {
+        $concert = $concerts->find($id);
+        $form = $this->createForm(ConcertFormType::class, $concert);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $show = $form->getData();
+
+            $entityManager->persist($show);
+            $entityManager->flush();
+            return $this->redirectToRoute("adminConcerts");
+        }
+        return $this->render('concert/edit.html.twig', [
+            'concertForm' => $form->createView(),
+        ]);
+    }
+
+    #[Route("/{id}/delete", name: "concertDelete")]
+    public function delete(ConcertRepository $concerts, EntityManagerInterface $entityManager, int $id): Response
+    {
+        $entityManager->remove($concerts->find($id));
+        $entityManager->flush();
+        return $this->redirectToRoute('adminConcerts');
     }
 }

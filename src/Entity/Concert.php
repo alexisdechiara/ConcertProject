@@ -43,7 +43,7 @@ class Concert
     private $duration;
 
     /**
-     * @ORM\OneToMany(targetEntity=Participate::class, mappedBy="concert", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Participate::class, mappedBy="concert", orphanRemoval=true, cascade={"persist"})
      * @OrderBy({"runningPassage" = "ASC"})
      */
     private $participates;
@@ -62,6 +62,11 @@ class Concert
      * @ORM\Column(type="string", nullable=true)
      */
     private $bannerImage;
+
+    /**
+     * @ORM\Column(type="time")
+     */
+    private $time;
 
     #[Pure] public function __construct()
     {
@@ -184,6 +189,18 @@ class Concert
     public function setBannerImage($bannerImage): self
     {
         $this->bannerImage = $bannerImage;
+
+        return $this;
+    }
+
+    public function getTime(): ?\DateTimeInterface
+    {
+        return $this->time;
+    }
+
+    public function setTime(?\DateTimeInterface $time): self
+    {
+        $this->time = $time;
 
         return $this;
     }

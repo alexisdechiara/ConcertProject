@@ -46,7 +46,7 @@ class BandFixture extends Fixture implements DependentFixtureInterface
         $angele     ->setName("Angèle")
                     ->addArtist($this->getReference("angele"))
                     ->setDescription("Angèle Van Laeken, dite Angèle, née le 3 décembre 1995 à Uccle (Bruxelles-Capitale), est une auteure-compositrice-interprète, musicienne, productrice, actrice et mannequin belge.")
-                    ->setCoverImage("img/band/angele-cover.webp")
+                    ->setCoverImage("img/band/angele-cover.png")
                     ->setBannerImage("img/band/angele-banner.jpg")
                     ->addStyle($this->getReference("french"))
                     ->addStyle($this->getReference("pop"));
@@ -56,7 +56,7 @@ class BandFixture extends Fixture implements DependentFixtureInterface
                     ->addArtist($this->getReference("bigflo"))
                     ->addArtist($this->getReference("oli"))
                     ->setDescription("Bigflo et Oli, parfois abrégé B&O, est un groupe de rap français, originaire de Toulouse. Le duo est composé des frères Florian « Bigflo » et Olivio « Oli » Ordonez.")
-                    ->setCoverImage("img/band/bigfloEtOli-cover.jpg")
+                    ->setCoverImage("img/band/bigfloEtOli-cover.png")
                     ->setBannerImage("img/band/bigfloEtOli-banner.jpg")
                     ->addStyle($this->getReference("french"))
                     ->addStyle($this->getReference("hipHop"));
@@ -65,7 +65,7 @@ class BandFixture extends Fixture implements DependentFixtureInterface
         $maelle     ->setName("Maëlle")
                     ->addArtist($this->getReference("maelle"))
                     ->setDescription("Maëlle Pistoia, dite Maëlle, est une chanteuse française, née le 4 janvier 2001 à Tournus (Saône-et-Loire).")
-                    ->setCoverImage("img/band/maelle-cover.jpg")
+                    ->setCoverImage("img/band/maelle-cover.webp")
                     ->setBannerImage("img/band/maelle-banner.jpg")
                     ->addStyle($this->getReference("french"))
                     ->addStyle($this->getReference("pop"));
@@ -99,7 +99,7 @@ class BandFixture extends Fixture implements DependentFixtureInterface
         $suzane     ->setName("Suzane")
                     ->addArtist($this->getReference("suzane"))
                     ->setDescription("Océane Colom, dite Suzane, née le 29 décembre 1990 à Avignon, est une auteure-compositrice-interprète française. Elle se fait connaître en 2019 par sa présence sur la scène française, avant de publier son premier album, Toï Toï, l'année suivante. Elle est récompensée de la Victoire de la révélation scène lors des Victoires de la musique 2020.")
-                    ->setCoverImage("img/band/suzane-cover.jpg")
+                    ->setCoverImage("img/band/suzane-cover.png")
                     ->setBannerImage("img/band/suzane-banner.jpg")
                     ->addStyle($this->getReference("french"));
 

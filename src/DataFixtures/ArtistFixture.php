@@ -16,15 +16,16 @@ class ArtistFixture extends Fixture
                     ->setFirstName("Claire")
                     ->setLastName("Pommet")
                     ->setPicture("img/artist/pomme-picture.jpg")
-                    ->setGender(1)
-                    ->setRole("Singer");
+                    ->setGender(2)
+                    ->setRole("singer");
 
         $calogero   = new Artist();
         $calogero   ->setStageName("Calogero")
                     ->setFirstName("Calogero")
                     ->setLastName("Joseph Salvatore Maurici")
                     ->setPicture("img/artist/calogero-picture.jpg")
-                    ->setRole("Singer");
+                    ->setGender(1)
+                    ->setRole("singer");
 
         $orelsan    = new Artist();
         $orelsan    ->setStageName("OrelSan")
@@ -32,7 +33,7 @@ class ArtistFixture extends Fixture
                     ->setLastName("Cotentin")
                     ->setPicture("img/artist/orelsan-picture.jpg")
                     ->setGender(1)
-                    ->setRole("Singer");
+                    ->setRole("singer");
 
         $angele     = new Artist();
         $angele     ->setStageName("Angèle")
@@ -40,7 +41,7 @@ class ArtistFixture extends Fixture
                     ->setLastName("Van Laeken")
                     ->setPicture("img/artist/angele-picture.jpg")
                     ->setGender(2)
-                    ->setRole("Singer");
+                    ->setRole("singer");
 
         $bigflo     = new Artist();
         $bigflo     ->setStageName("Bigflo")
@@ -48,7 +49,7 @@ class ArtistFixture extends Fixture
                     ->setLastName("Ordonez")
                     ->setPicture("img/artist/bigflo-picture.jpg")
                     ->setGender(1)
-                    ->setRole("Singer");
+                    ->setRole("singer");
 
         $oli        = new Artist();
         $oli        ->setStageName("Oli")
@@ -56,7 +57,7 @@ class ArtistFixture extends Fixture
                     ->setLastName("Ordonez")
                     ->setPicture("img/artist/oli-picture.jpg")
                     ->setGender(1)
-                    ->setRole("Singer");
+                    ->setRole("singer");
 
         $barbara    = new Artist();
         $barbara    ->setStageName("Barbara Pravi")
@@ -64,7 +65,7 @@ class ArtistFixture extends Fixture
                     ->setLastName("Piévic")
                     ->setPicture("img/artist/barbara-picture.jpg")
                     ->setGender(2)
-                    ->setRole("Singer");
+                    ->setRole("singer");
 
         $hoshi      = new Artist();
         $hoshi      ->setStageName("Hoshi")
@@ -72,7 +73,7 @@ class ArtistFixture extends Fixture
                     ->setLastName("Gerner")
                     ->setPicture("img/artist/hoshi-picture.jpg")
                     ->setGender(1)
-                    ->setRole("Singer");
+                    ->setRole("singer");
 
         $benMazue   = new Artist();
         $benMazue   ->setStageName("Ben Mazué")
@@ -80,7 +81,7 @@ class ArtistFixture extends Fixture
                     ->setLastName("Mazuet")
                     ->setPicture("img/artist/benMazue-picture.jpg")
                     ->setGender(1)
-                    ->setRole("Singer");
+                    ->setRole("singer");
 
         $maelle     = new Artist();
         $maelle     ->setStageName("Maëlle")
@@ -88,7 +89,7 @@ class ArtistFixture extends Fixture
                     ->setLastName("Pistoia")
                     ->setPicture("img/artist/maelle-picture.webp")
                     ->setGender(2)
-                    ->setRole("Singer");
+                    ->setRole("singer");
 
         $suzane     = new Artist();
         $suzane     ->setStageName("Suzanne")
@@ -96,7 +97,7 @@ class ArtistFixture extends Fixture
                     ->setLastName("Colom")
                     ->setPicture("img/artist/suzane-picture.png")
                     ->setGender(2)
-                    ->setRole("Singer");
+                    ->setRole("singer");
 
         $gcm        = new Artist();
         $gcm        ->setStageName("Grand Corps Malade")
@@ -104,7 +105,7 @@ class ArtistFixture extends Fixture
                     ->setLastName("Marsaud")
                     ->setPicture("img/artist/gcm-picture.jpg")
                     ->setGender(1)
-                    ->setRole("Singer");
+                    ->setRole("singer");
 
         $louane     = new Artist();
         $louane     ->setStageName("Louane")
@@ -112,7 +113,7 @@ class ArtistFixture extends Fixture
                     ->setLastName("Peichert")
                     ->setPicture("img/artist/louane-picture.jpg")
                     ->setGender(2)
-                    ->setRole("Singer");
+                    ->setRole("singer");
 
         $stromae    = new Artist();
         $stromae    ->setStageName("Stromae")
@@ -120,7 +121,7 @@ class ArtistFixture extends Fixture
                     ->setLastName("Van Haver")
                     ->setPicture("img/artist/stromae-picture.jpg")
                     ->setGender(1)
-                    ->setRole("Singer");
+                    ->setRole("singer");
 
         $manager->persist($pomme);
         $manager->persist($calogero);

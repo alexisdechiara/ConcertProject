@@ -5,10 +5,10 @@
 {% block body %}
 
     <div class="shadow pb-4">
-        <div class="bg-[url('{{ asset(band.getBannerImage()|default() ? band.getBannerImage() : (band.getArtists()|first).getPicture()) }}')] bg-cover bg-center h-64"></div>
+        <img src="{{ asset(band.getBannerImage()|default() ? band.getBannerImage() : (band.getArtists()|first).getPicture()) }}" class="object-cover object-center h-64 w-full"/>
         <div class="container flex flex-col">
             <div class="flex flex-row">
-                <div class="bg-[url('{{ asset(band.getArtists()|length == 1 ? (band.getArtists()|first).getPicture() : band.getCoverImage()) }}')] bg-cover bg-top rounded -mt-16 h-48 w-48"></div>
+                <img src="{{ asset(band.getArtists()|length == 1 ? (band.getArtists()|first).getPicture() : band.getCoverImage()) }}"  class="object-cover cover-top rounded -mt-16 h-32 w-32"/>
                 <div class="ml-8 mt-4">
                     <h2 class="text-3xl font-medium">{{ band.getName() }}</h2>
                     <p class="whitespace-pre-line mt-2 text-justify	">{{ band.description }}</p>

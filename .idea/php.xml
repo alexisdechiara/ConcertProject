@@ -152,6 +152,7 @@
       <path value="$PROJECT_DIR$/vendor/symfony/twig-bridge - Copie" />
       <path value="$PROJECT_DIR$/vendor/twig - Copie/extra-bundle" />
       <path value="$PROJECT_DIR$/vendor/twig - Copie/twig" />
+      <path value="$PROJECT_DIR$/vendor/beberlei/doctrineextensions" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.0" />

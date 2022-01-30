@@ -4,10 +4,13 @@ namespace App\Entity;
 
 use App\Repository\ArtistRepository;
 use Doctrine\ORM\Mapping as ORM;
+use JetBrains\PhpStorm\Pure;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ArtistRepository::class)
+ * @UniqueEntity("stageName")
  */
 class Artist
 {
@@ -44,8 +47,8 @@ class Artist
     private $picture;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
-     * @Assert\Choice({0, 1, 2})
+     * @ORM\Column(type="smallint", nullable=true)
+     * @Assert\Range(min=0, max=2)
      */
     private $gender;
 
@@ -141,5 +144,10 @@ class Artist
         $this->birthDay = $birthDay;
 
         return $this;
+    }
+
+    #[Pure] public function __toString()
+    {
+        return $this->getStageName();
     }
 }
