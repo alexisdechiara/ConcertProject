@@ -44,8 +44,10 @@ class ProfileFormType extends AbstractType
                             ]),
                         ]
                     ])
-                    ->add('profileImage', TextType::class, [
-                        'label' => 'Profile image',
+                    ->add('profileImage', FileType::class, [
+                        'label' => 'Profile Image',
+                        'mapped' => false,
+                        'required' => false,
                     ])
                     ->add('submit', SubmitType::class)
         ;

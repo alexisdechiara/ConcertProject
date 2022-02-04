@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use JetBrains\PhpStorm\Pure;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass=BandRepository::class)
@@ -26,15 +27,9 @@ class Band
     private $name;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
-     */
-    private $coverImage;
-
-    /**
      * @ORM\ManyToMany(targetEntity=Artist::class, inversedBy="bands")
      */
     private $artists;
-
 
     /**
      * @ORM\ManyToMany(targetEntity=Style::class)
@@ -53,7 +48,14 @@ class Band
     private $description;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\OneToOne(targetEntity=Image::class, cascade={"persist", "remove"}, orphanRemoval=true)
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $coverImage;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Image::class, cascade={"persist", "remove"}, orphanRemoval=true)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $bannerImage;
 
@@ -82,24 +84,24 @@ class Band
         return $this;
     }
 
-    public function getCoverImage()
+    public function getCoverImage(): ?Image
     {
         return $this->coverImage;
     }
 
-    public function setCoverImage($coverImage): self
+    public function setCoverImage(?Image $coverImage): self
     {
         $this->coverImage = $coverImage;
 
         return $this;
     }
 
-    public function getBannerImage(): ?string
+    public function getBannerImage(): ?Image
     {
         return $this->bannerImage;
     }
 
-    public function setBannerImage(?string $bannerImage): self
+    public function setBannerImage(?Image $bannerImage): self
     {
         $this->bannerImage = $bannerImage;
 

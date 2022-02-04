@@ -49,17 +49,19 @@ class Concert
     private $participates;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
-     */
-    private $coverImage;
-
-    /**
      * @ORM\Column(type="text", nullable=true)
      */
     private $description;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\OneToOne(targetEntity=Image::class, cascade={"persist", "remove"}, orphanRemoval=true)
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $coverImage;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Image::class, cascade={"persist", "remove"}, orphanRemoval=true)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $bannerImage;
 
@@ -157,18 +159,6 @@ class Concert
         return $this;
     }
 
-    public function getCoverImage(): ?string
-    {
-        return $this->coverImage;
-    }
-
-    public function setCoverImage(?string $coverImage): self
-    {
-        $this->coverImage = $coverImage;
-
-        return $this;
-    }
-
     public function getDescription(): ?string
     {
         return $this->description;
@@ -181,12 +171,24 @@ class Concert
         return $this;
     }
 
-    public function getBannerImage()
+    public function getCoverImage(): ?Image
+    {
+        return $this->coverImage;
+    }
+
+    public function setCoverImage(?Image $coverImage): self
+    {
+        $this->coverImage = $coverImage;
+
+        return $this;
+    }
+
+    public function getBannerImage(): ?Image
     {
         return $this->bannerImage;
     }
 
-    public function setBannerImage($bannerImage): self
+    public function setBannerImage(?Image $bannerImage): self
     {
         $this->bannerImage = $bannerImage;
 

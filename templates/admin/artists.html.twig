@@ -44,7 +44,7 @@
                                         <td class="text-sm text-gray-900 font-light p-4 whitespace-nowrap">{{ date().diff(date(artist.getBirthDay())).y }}</td>
                                         {% endif %}
                                         <td class="text-sm text-gray-900 font-light p-4 whitespace-nowrap">{{ artist.getRole() }}</td>
-                                        <td class="text-sm text-gray-900 font-light p-4 whitespace-nowrap">{{ artist.getPicture() }}</td>
+                                        <td class="text-sm text-gray-900 font-light p-4 whitespace-nowrap">{{ artist.getPicture().getFilename() }}</td>
                                         <td class="text-sm text-gray-900 font-light p-4 whitespace-nowrap">{{ artist.getGender()== 1 ? 'Man' : artist.getGender()== 2 ? 'Woman' : 'Other' }}</td>
                                         <td class="text-sm text-gray-900 font-light pl-4 pr-2 whitespace-pre-line">
                                             <div class="flex space-x-2">

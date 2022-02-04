@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Band;
 use App\Entity\Concert;
+use App\Entity\Image;
 use App\Form\BandFormType;
 use App\Form\ConcertFormType;
 use App\Repository\BandRepository;
@@ -41,9 +42,19 @@ class ConcertController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $show = $form->getData();
+            $data = $form->getData();
+            if($coverFile = $form->get('coverFile')->getData()) {
+                $coverImage = new Image();
+                $coverImage->setFile($coverFile);
+                $data->setCoverImage($coverImage);
+            }
+            if($bannerFile = $form->get('bannerFile')->getData()) {
+                $bannerImage = new Image();
+                $bannerImage->setFile($bannerFile);
+                $data->setBannerImage($bannerImage);
+            }
 
-            $entityManager->persist($show);
+            $entityManager->persist($data);
             $entityManager->flush();
             return $this->redirectToRoute("adminConcerts");
         }
@@ -69,9 +80,19 @@ class ConcertController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $show = $form->getData();
+            $data = $form->getData();
+            if($coverFile = $form->get('coverFile')->getData()) {
+                $coverImage = new Image();
+                $coverImage->setFile($coverFile);
+                $data->setCoverImage($coverImage);
+            }
+            if($bannerFile = $form->get('bannerFile')->getData()) {
+                $bannerImage = new Image();
+                $bannerImage->setFile($bannerFile);
+                $data->setBannerImage($bannerImage);
+            }
 
-            $entityManager->persist($show);
+            $entityManager->persist($data);
             $entityManager->flush();
             return $this->redirectToRoute("adminConcerts");
         }

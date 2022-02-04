@@ -5,10 +5,10 @@
 {% block body %}
 
     <div class="shadow pb-4">
-        <img src="{{ asset(band.getBannerImage()|default() ? band.getBannerImage() : (band.getArtists()|first).getPicture()) }}" class="object-cover object-center h-64 w-full"/>
+        <img src="{{ band.getBannerImage() ? vich_uploader_asset(band.getBannerImage(),'file') : vich_uploader_asset((band.getArtists()|first).getPicture(),'file') }}" class="object-cover object-center h-64 w-full" alt="Band banner image"/>
         <div class="container flex flex-col">
-            <div class="flex flex-row">
-                <img src="{{ asset(band.getArtists()|length == 1 ? (band.getArtists()|first).getPicture() : band.getCoverImage()) }}"  class="object-cover cover-top rounded -mt-16 h-32 w-32"/>
+            <div class="flex flex-row mx-24">
+                <img src="{{ band.getArtists()|length == 1 ? vich_uploader_asset((band.getArtists()|first).getPicture(),'file') : vich_uploader_asset(band.getCoverImage(),'file') }}"  class="object-cover cover-top rounded -mt-16 h-48 w-32" alt="Artists image"/>
                 <div class="ml-8 mt-4">
                     <h2 class="text-3xl font-medium">{{ band.getName() }}</h2>
                     <p class="whitespace-pre-line mt-2 text-justify	">{{ band.description }}</p>
@@ -33,7 +33,7 @@
                 {% for artist in band.getArtists() %}
                     <div class="flex justify-center">
                         <div class="flex flex-col md:flex-row md:max-w-xl rounded-lg bg-white shadow-lg w-full h-32">
-                            <img class=" w-full h-96 md:h-auto object-cover object-top md:w-32 rounded-t-lg md:rounded-none md:rounded-l-lg" src="{{ asset(artist.getPicture()) }}" alt="" />
+                            <img class=" w-full h-96 md:h-auto object-cover object-top md:w-32 rounded-t-lg md:rounded-none md:rounded-l-lg" src="{{ vich_uploader_asset((band.getArtists()|first).getPicture(),'file') }}" alt="" />
                             <div class="p-6 flex flex-col justify-start">
                                 <h5 class="text-gray-900 text-xl font-medium mb-2">{{ artist.getStageName() }}</h5>
                                 <p class="text-gray-700 text-base mb-4">

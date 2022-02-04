@@ -41,6 +41,11 @@ class Building
      */
     private $halls;
 
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $mapUrl;
+
     public function __construct()
     {
         $this->halls = new ArrayCollection();
@@ -113,6 +118,18 @@ class Building
                 $hall->setBuilding(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getMapUrl(): ?string
+    {
+        return $this->mapUrl;
+    }
+
+    public function setMapUrl(?string $mapUrl): self
+    {
+        $this->mapUrl = $mapUrl;
 
         return $this;
     }

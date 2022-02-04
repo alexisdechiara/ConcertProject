@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -50,9 +51,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $lastName;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\OneToOne(targetEntity=Image::class, cascade={"persist", "remove"}, orphanRemoval=true)
+     * @ORM\JoinColumn(nullable=true)
      */
-    private $profileImage;
+    private ?Image $profileImage;
 
     /**
      * @ORM\Column(type="date")
@@ -172,12 +174,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getProfileImage()
+    public function getProfileImage(): ?Image
     {
         return $this->profileImage;
     }
 
-    public function setProfileImage($profileImage): self
+    public function setProfileImage(Image $profileImage): self
     {
         $this->profileImage = $profileImage;
 

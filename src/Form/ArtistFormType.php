@@ -3,9 +3,13 @@
 namespace App\Form;
 
 use App\Entity\Artist;
+use App\Entity\Image;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -34,8 +38,9 @@ class ArtistFormType extends AbstractType
                     'Musician' => 'musician',
                 ]
             ])
-            ->add('picture', TextType::class, [
-                'required' => false,
+            ->add('picture', FileType::class, [
+                'mapped' => false,
+                'required' => true,
             ])
             ->add('gender', ChoiceType::class, [
                 'choices' => [

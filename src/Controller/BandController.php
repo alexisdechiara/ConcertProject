@@ -3,6 +3,7 @@
     namespace App\Controller;
 
     use App\Entity\Band;
+    use App\Entity\Image;
     use App\Form\BandFormType;
     use App\Repository\ArtistRepository;
     use App\Repository\BandRepository;
@@ -35,22 +36,25 @@
 
             if ($form->isSubmitted() && $form->isValid()) {
 
-                $show = $form->getData();
+                $data = $form->getData();
+                if($coverFile = $form->get('coverFile')->getData()) {
+                    $coverImage = new Image();
+                    $coverImage->setFile($coverFile);
+                    $data->setCoverImage($coverImage);
+                }
+                if($bannerFile = $form->get('bannerFile')->getData()) {
+                    $bannerImage = new Image();
+                    $bannerImage->setFile($bannerFile);
+                    $data->setBannerImage($bannerImage);
+                }
 
-                $entityManager->persist($show);
+                $entityManager->persist($data);
                 $entityManager->flush();
+
+                return $this->redirectToRoute('adminBands');
             }
             return $this->render('band/edit.html.twig', [
                 'bandForm' => $form->createView(),
-            ]);
-        }
-
-        #[Route("/{id}", name: "bandShow")]
-        public function show(BandRepository $bands, ConcertRepository $concerts, int $id): Response
-        {
-            return $this->render('band/show.html.twig', [
-                'band' => $bands->find($id),
-                'nextConcerts' => $concerts->findNextByBand($id),
             ]);
         }
 
@@ -63,10 +67,22 @@
 
             if ($form->isSubmitted() && $form->isValid()) {
 
-                $show = $form->getData();
+                $data = $form->getData();
+                if($coverFile = $form->get('coverFile')->getData()) {
+                    $coverImage = new Image();
+                    $coverImage->setFile($coverFile);
+                    $data->setCoverImage($coverImage);
+                }
+                if($bannerFile = $form->get('bannerFile')->getData()) {
+                    $bannerImage = new Image();
+                    $bannerImage->setFile($bannerFile);
+                    $data->setBannerImage($bannerImage);
+                }
 
-                $entityManager->persist($show);
+                $entityManager->persist($data);
                 $entityManager->flush();
+
+                return $this->redirectToRoute('adminBands');
             }
             return $this->render('band/edit.html.twig', [
                 'bandForm' => $form->createView(),
@@ -79,5 +95,14 @@
             $entityManager->remove($bands->find($id));
             $entityManager->flush();
             return $this->redirectToRoute('adminBands');
+        }
+
+        #[Route("/{id}", name: "bandShow")]
+        public function show(BandRepository $bands, ConcertRepository $concerts, int $id): Response
+        {
+            return $this->render('band/show.html.twig', [
+                'band' => $bands->find($id),
+                'nextConcerts' => $concerts->findNextByBand($id),
+            ]);
         }
     }

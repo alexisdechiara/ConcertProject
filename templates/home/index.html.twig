@@ -4,9 +4,9 @@
 
 {% block body %}
 
-<div class="container">
-    <h1 class="font-bold text-6xl text-center my-16">Bienvenu sur ConcertProject</h1>
-    <div id="concertIndicator" class="carousel slide relative my-8" data-bs-ride="carousel">
+<div class="container p-8">
+    <h1 class="font-bold text-6xl text-center mt-8 mb-16">Bienvenu sur ConcertProject</h1>
+    <div id="concertIndicator" class="carousel slide relative my-8 mx-64" data-bs-ride="carousel">
         <div class="carousel-indicators absolute right-0 bottom-0 left-0 flex justify-center p-0 mb-4">
             <button type="button" data-bs-target="#concertIndicator" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
             <button type="button" data-bs-target="#concertIndicator" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -15,7 +15,7 @@
         <div class="carousel-inner relative w-full overflow-hidden">
             {% for concert in concerts  %}
                 <a href="{{ path('concertShow', {'id': concert.getId() }) }}" class="carousel-item {{ concert == concerts[0] ? 'active'}} float-left w-full">
-                    <img src="{{ concert.getCoverImage() }}" class="object-cover h-full w-full aspect-video"/>
+                    <img src="" class="object-cover h-full w-full aspect-video" alt="Cover image"/>
                 </a>
             {% endfor %}
         </div>

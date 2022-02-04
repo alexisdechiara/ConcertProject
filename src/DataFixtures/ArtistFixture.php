@@ -3,27 +3,31 @@
 namespace App\DataFixtures;
 
 use App\Entity\Artist;
+use App\Entity\Image;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-class ArtistFixture extends Fixture
+class ArtistFixture extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager): void
     {
-
         $pomme      = new Artist();
         $pomme      ->setStageName("Pomme")
                     ->setFirstName("Claire")
                     ->setLastName("Pommet")
-                    ->setPicture("img/artist/pomme-picture.jpg")
+                    ->setPicture($this->getReference("pommePicture"))
                     ->setGender(2)
                     ->setRole("singer");
+
 
         $calogero   = new Artist();
         $calogero   ->setStageName("Calogero")
                     ->setFirstName("Calogero")
                     ->setLastName("Joseph Salvatore Maurici")
-                    ->setPicture("img/artist/calogero-picture.jpg")
+                    ->setPicture($this->getReference("calogeroPicture"))
                     ->setGender(1)
                     ->setRole("singer");
 
@@ -31,7 +35,7 @@ class ArtistFixture extends Fixture
         $orelsan    ->setStageName("OrelSan")
                     ->setFirstName("Aurélien")
                     ->setLastName("Cotentin")
-                    ->setPicture("img/artist/orelsan-picture.jpg")
+                    ->setPicture($this->getReference("orelsanPicture"))
                     ->setGender(1)
                     ->setRole("singer");
 
@@ -39,7 +43,7 @@ class ArtistFixture extends Fixture
         $angele     ->setStageName("Angèle")
                     ->setFirstName("Angèle")
                     ->setLastName("Van Laeken")
-                    ->setPicture("img/artist/angele-picture.jpg")
+                    ->setPicture($this->getReference("angelePicture"))
                     ->setGender(2)
                     ->setRole("singer");
 
@@ -47,7 +51,7 @@ class ArtistFixture extends Fixture
         $bigflo     ->setStageName("Bigflo")
                     ->setFirstName("Florian")
                     ->setLastName("Ordonez")
-                    ->setPicture("img/artist/bigflo-picture.jpg")
+                    ->setPicture($this->getReference("bigfloPicture"))
                     ->setGender(1)
                     ->setRole("singer");
 
@@ -55,7 +59,7 @@ class ArtistFixture extends Fixture
         $oli        ->setStageName("Oli")
                     ->setFirstName("Olivio")
                     ->setLastName("Ordonez")
-                    ->setPicture("img/artist/oli-picture.jpg")
+                    ->setPicture($this->getReference("oliPicture"))
                     ->setGender(1)
                     ->setRole("singer");
 
@@ -63,7 +67,7 @@ class ArtistFixture extends Fixture
         $barbara    ->setStageName("Barbara Pravi")
                     ->setFirstName("Barbara")
                     ->setLastName("Piévic")
-                    ->setPicture("img/artist/barbara-picture.jpg")
+                    ->setPicture($this->getReference("barbaraPicture"))
                     ->setGender(2)
                     ->setRole("singer");
 
@@ -71,7 +75,7 @@ class ArtistFixture extends Fixture
         $hoshi      ->setStageName("Hoshi")
                     ->setFirstName("Mathilde")
                     ->setLastName("Gerner")
-                    ->setPicture("img/artist/hoshi-picture.jpg")
+                    ->setPicture($this->getReference("hoshiPicture"))
                     ->setGender(1)
                     ->setRole("singer");
 
@@ -79,7 +83,7 @@ class ArtistFixture extends Fixture
         $benMazue   ->setStageName("Ben Mazué")
                     ->setFirstName("Benjamin")
                     ->setLastName("Mazuet")
-                    ->setPicture("img/artist/benMazue-picture.jpg")
+                    ->setPicture($this->getReference("benMazuePicture"))
                     ->setGender(1)
                     ->setRole("singer");
 
@@ -87,7 +91,7 @@ class ArtistFixture extends Fixture
         $maelle     ->setStageName("Maëlle")
                     ->setFirstName("Maëlle")
                     ->setLastName("Pistoia")
-                    ->setPicture("img/artist/maelle-picture.webp")
+                    ->setPicture($this->getReference("maellePicture"))
                     ->setGender(2)
                     ->setRole("singer");
 
@@ -95,7 +99,7 @@ class ArtistFixture extends Fixture
         $suzane     ->setStageName("Suzanne")
                     ->setFirstName("Océane")
                     ->setLastName("Colom")
-                    ->setPicture("img/artist/suzane-picture.png")
+                    ->setPicture($this->getReference("suzanePicture"))
                     ->setGender(2)
                     ->setRole("singer");
 
@@ -103,7 +107,7 @@ class ArtistFixture extends Fixture
         $gcm        ->setStageName("Grand Corps Malade")
                     ->setFirstName("Fabien")
                     ->setLastName("Marsaud")
-                    ->setPicture("img/artist/gcm-picture.jpg")
+                    ->setPicture($this->getReference("gcmPicture"))
                     ->setGender(1)
                     ->setRole("singer");
 
@@ -111,7 +115,7 @@ class ArtistFixture extends Fixture
         $louane     ->setStageName("Louane")
                     ->setFirstName("Anne")
                     ->setLastName("Peichert")
-                    ->setPicture("img/artist/louane-picture.jpg")
+                    ->setPicture($this->getReference("louanePicture"))
                     ->setGender(2)
                     ->setRole("singer");
 
@@ -119,11 +123,10 @@ class ArtistFixture extends Fixture
         $stromae    ->setStageName("Stromae")
                     ->setFirstName("Paul")
                     ->setLastName("Van Haver")
-                    ->setPicture("img/artist/stromae-picture.jpg")
+                    ->setPicture($this->getReference("stromaePicture"))
                     ->setGender(1)
                     ->setRole("singer");
 
-        $manager->persist($pomme);
         $manager->persist($calogero);
         $manager->persist($orelsan);
         $manager->persist($angele);
@@ -137,6 +140,7 @@ class ArtistFixture extends Fixture
         $manager->persist($gcm);
         $manager->persist($louane);
         $manager->persist($stromae);
+        $manager->persist($pomme);
         $manager->flush();
 
         $this->addReference("pomme", $pomme);
@@ -153,5 +157,18 @@ class ArtistFixture extends Fixture
         $this->addReference("gcm", $gcm);
         $this->addReference("louane", $louane);
         $this->addReference("stromae", $stromae);
+    }
+
+    /**
+     * This method must return an array of fixtures classes
+     * on which the implementing class depends on
+     *
+     * @psalm-return array<class-string<FixtureInterface>>
+     */
+    public function getDependencies(): array
+    {
+        return [
+            ImageFixture::class,
+        ];
     }
 }

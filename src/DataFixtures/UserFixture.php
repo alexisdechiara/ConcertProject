@@ -32,11 +32,11 @@ class UserFixture extends Fixture
                 ->setEmail('admin@mail.com')
                 ->setCreationDate(new \DateTime('now'));
 
-        for ($i = 1; $i <= 89; $i++) {
+        for ($i = 1; $i <= 9; $i++) {
             $this->createUser(strval($i), $manager);
         }
 
-        for ($i = 1; $i <= 9; $i++) {
+        for ($i = 1; $i <= 2; $i++) {
             $this->createAdmin(strval($i), $manager);
         }
 

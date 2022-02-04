@@ -8,7 +8,6 @@ use DateTime;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
-use Symfony\Component\HttpFoundation\File\File;
 
 class ConcertFixture extends Fixture implements DependentFixtureInterface
 {
@@ -17,37 +16,62 @@ class ConcertFixture extends Fixture implements DependentFixtureInterface
 
         $failleTour         = new Concert();
         $failleTour         ->setName('Les failles tour')
-                            ->setCoverImage("https://musicshaker.fr/wp-content/uploads/2019/11/pomme-1.png")
-                            ->setBannerImage('src/DataFixtures/img/concert/pomme_concert_banner.jpg')
+                            ->setCoverImage($this->getReference('failleTourCover'))
+                            ->setBannerImage($this->getReference('failleTourBanner'))
                             ->setDescription("Résolument folk, elle compose aussi bien en français qu'en anglais, laissant parfois un semblant de country transpirer de ses mélodies. Ses textes, personnels et d'une déroutante maturité, évoquent avec sensibilité mais sans mélancolie les émotions à fleur de peau des jeunes gens de son âge.")
                             ->setHall($this->getReference('Berlioz'))
-                            ->setDate(new DateTime('04/28/2022 21:00:00'))
+                            ->setDate(new DateTime('2022-04-28'))
+                            ->setTime(new DateTime('21:00:00'))
                             ->setDuration(new DateInterval('PT3H'));
 
         $calogeroConcert    = new Concert();
         $calogeroConcert    ->setName('Calogero en concert')
-                            ->setBannerImage('src/DataFixtures/img/calogero_concert_banner.jpg')
-                            ->setCoverImage("https://statics-infoconcert.digitick.com/media/a_effacer/calogero_concert_tour22_visunews1121.jpg")
+                            ->setCoverImage($this->getReference('calogeroConcertCover'))
+                            ->setBannerImage($this->getReference('calogeroConcertBanner'))
                             ->setHall($this->getReference('Berlioz'))
-                            ->setDate(new DateTime('03/09/2022 18:00:00'))
+                            ->setDate(new DateTime('2022-03-09'))
+                            ->setTime(new DateTime('18:00:00'))
                             ->setDuration(new DateInterval('PT3H'));
 
         $toiToi             = new Concert();
         $toiToi             ->setName('TOÏ TOÏ')
-                            ->setCoverImage('https://wspectacle.fr/media/cache/w980/uploads/artist_image/0a13261d156dc277537304911ceedf53b97bcd8e.jpeg')
-                            ->setBannerImage('src/DataFixtures/img/concert/suzane_concert_banner.jpg')
+                            ->setCoverImage($this->getReference('toiToiCover'))
+                            ->setBannerImage($this->getReference('toiToiBanner'))
                             ->setHall($this->getReference('Berlioz'))
-                            ->setDate(new DateTime('01/20/2022 17:15:00'))
+                            ->setDate(new DateTime('2022-01-31'))
+                            ->settime(new DateTime('17:15:00'))
                             ->setDuration(new DateInterval('PT4H'));
+
+        $multitudeTour      = new Concert();
+        $multitudeTour      ->setName('STROMAE - Multitude tour')
+                            ->setCoverImage($this->getReference('multitudeTourCover'))
+                            ->setBannerImage($this->getReference('multitudeTourBanner'))
+                            ->setHall($this->getReference('Berlioz'))
+                            ->setDate(new DateTime('2022-02-14'))
+                            ->settime(new DateTime('20:07:00'))
+                            ->setDuration(new DateInterval('PT2H'));
+
+        $nonanteCinq        = new Concert();
+        $nonanteCinq        ->setName('Nonante-cinq tour')
+                            ->setCoverImage($this->getReference('nonanteCinqTourCover'))
+                            ->setBannerImage($this->getReference('nonanteCinqTourBanner'))
+                            ->setHall($this->getReference('Berlioz'))
+                            ->setDate(new DateTime('2022-02-08'))
+                            ->settime(new DateTime('21:00:00'))
+                            ->setDuration(new DateInterval('PT3H'));
 
         $manager->persist($failleTour);
         $manager->persist($calogeroConcert);
         $manager->persist($toiToi);
+        $manager->persist($multitudeTour);
+        $manager->persist($nonanteCinq);
         $manager->flush();
 
         $this->addReference("failleTour", $failleTour);
         $this->addReference("calogeroConcert", $calogeroConcert);
         $this->addReference("toiToi", $toiToi);
+        $this->addReference("multitudeTour", $multitudeTour);
+        $this->addReference("nonanteCinq", $nonanteCinq);
     }
 
     /**
@@ -60,6 +84,7 @@ class ConcertFixture extends Fixture implements DependentFixtureInterface
     {
         return [
             HallFixture::class,
+            ImageFixture::class,
         ];
     }
 }

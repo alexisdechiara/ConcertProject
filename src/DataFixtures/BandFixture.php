@@ -15,8 +15,8 @@ class BandFixture extends Fixture implements DependentFixtureInterface
         $pomme      ->setName("Pomme")
                     ->addArtist($this->getReference("pomme"))
                     ->setDescription("Claire Pommet, dite Pomme, née le 2 août 1996 à Décines-Charpieu (Rhône), est une auteure-compositrice-interprète et musicienne française.")
-                    ->setCoverImage("img/band/pomme-cover.jpg")
-                    ->setBannerImage("img/band/pomme-banner.jpg")
+                    ->setCoverImage($this->getReference("pommeCover"))
+                    ->setBannerImage($this->getReference("pommeBanner"))
                     ->addStyle($this->getReference("french"))
                     ->addStyle($this->getReference("pop"))
                     ->addStyle($this->getReference("folk"));
@@ -25,19 +25,19 @@ class BandFixture extends Fixture implements DependentFixtureInterface
         $calogero   ->setName("Calogero")
                     ->addArtist($this->getReference("calogero"))
                     ->setDescription("Calogero, de son vrai nom Calogero Joseph Salvatore Maurici, né le 30 juillet 1971 à Échirolles (Isère), est un chanteur, compositeur et musicien français.")
-                    ->setCoverImage("img/band/calogero-cover.jpg")
-                    ->setBannerImage("img/band/calogero-banner.jpg")
+                    ->setCoverImage($this->getReference("calogeroCover"))
+                    ->setBannerImage($this->getReference("calogeroBanner"))
                     ->addStyle($this->getReference("french"))
                     ->addStyle($this->getReference("pop"))
                     ->addStyle($this->getReference("rock"));
 
 
         $orelsan    = new Band();
-        $orelsan    ->setName("OrelSan")
+        $orelsan    ->setName("Orelsan")
                     ->addArtist($this->getReference("orelsan"))
                     ->setDescription("Orelsan (/ɔʁɛlˈsan/), de son vrai nom Aurélien Cotentin, né le 1er août 1982 à Alençon (Orne), est un rappeur, compositeur, acteur, réalisateur et scénariste français.")
-                    ->setCoverImage("img/band/orelsan-cover.jpg")
-                    ->setBannerImage("img/band/orelsan-banner.jpg")
+                    ->setCoverImage($this->getReference("orelsanCover"))
+                    ->setBannerImage($this->getReference("orelsanBanner"))
                     ->addStyle($this->getReference("french"))
                     ->addStyle($this->getReference("rap"))
                     ->addStyle($this->getReference("hipHop"));
@@ -46,8 +46,8 @@ class BandFixture extends Fixture implements DependentFixtureInterface
         $angele     ->setName("Angèle")
                     ->addArtist($this->getReference("angele"))
                     ->setDescription("Angèle Van Laeken, dite Angèle, née le 3 décembre 1995 à Uccle (Bruxelles-Capitale), est une auteure-compositrice-interprète, musicienne, productrice, actrice et mannequin belge.")
-                    ->setCoverImage("img/band/angele-cover.png")
-                    ->setBannerImage("img/band/angele-banner.jpg")
+                    ->setCoverImage($this->getReference("angeleCover"))
+                    ->setBannerImage($this->getReference("angeleBanner"))
                     ->addStyle($this->getReference("french"))
                     ->addStyle($this->getReference("pop"));
 
@@ -56,8 +56,8 @@ class BandFixture extends Fixture implements DependentFixtureInterface
                     ->addArtist($this->getReference("bigflo"))
                     ->addArtist($this->getReference("oli"))
                     ->setDescription("Bigflo et Oli, parfois abrégé B&O, est un groupe de rap français, originaire de Toulouse. Le duo est composé des frères Florian « Bigflo » et Olivio « Oli » Ordonez.")
-                    ->setCoverImage("img/band/bigfloEtOli-cover.png")
-                    ->setBannerImage("img/band/bigfloEtOli-banner.jpg")
+                    ->setCoverImage($this->getReference("bigfloEtOliCover"))
+                    ->setBannerImage($this->getReference("bigfloEtOliBanner"))
                     ->addStyle($this->getReference("french"))
                     ->addStyle($this->getReference("hipHop"));
 
@@ -65,8 +65,8 @@ class BandFixture extends Fixture implements DependentFixtureInterface
         $maelle     ->setName("Maëlle")
                     ->addArtist($this->getReference("maelle"))
                     ->setDescription("Maëlle Pistoia, dite Maëlle, est une chanteuse française, née le 4 janvier 2001 à Tournus (Saône-et-Loire).")
-                    ->setCoverImage("img/band/maelle-cover.webp")
-                    ->setBannerImage("img/band/maelle-banner.jpg")
+                    ->setCoverImage($this->getReference("maelleCover"))
+                    ->setBannerImage($this->getReference("maelleBanner"))
                     ->addStyle($this->getReference("french"))
                     ->addStyle($this->getReference("pop"));
 
@@ -74,16 +74,16 @@ class BandFixture extends Fixture implements DependentFixtureInterface
         $barbara    ->setName("Barbara pravi")
                     ->addArtist($this->getReference("barbara"))
                     ->setDescription("Barbara Piévic, dite Barbara Pravi, est une auteure-compositrice-interprète française, née le 10 avril 1993 à Paris. Elle est révélée par sa participation au spectacle Un été 44 en 2016, et connue pour s'engager en faveur des droits des femmes. Elle représente la France au Concours Eurovision de la chanson 2021 avec sa chanson Voilà, terminant en deuxième position au classement final derrière le groupe italien Måneskin. C’est le meilleur classement français au concours international depuis 1991.")
-                    ->setCoverImage("img/band/barbara-cover.jpg")
-                    ->setBannerImage("img/band/barbara-banner.jpg")
+                    ->setCoverImage($this->getReference("barbaraCover"))
+                    ->setBannerImage($this->getReference("barbaraBanner"))
                     ->addStyle($this->getReference("french"));
 
         $hoshi      = new Band();
         $hoshi      ->setName("Hoshi")
                     ->addArtist($this->getReference("hoshi"))
                     ->setDescription("Mathilde Gerner, dite Hoshi, est une auteure-compositrice-interprète française, née le 14 septembre 1996 à Versailles.")
-                    ->setCoverImage("img/band/hoshi-cover.jpg")
-                    ->setBannerImage("img/band/hoshi-banner.jpg")
+                    ->setCoverImage($this->getReference("hoshiCover"))
+                    ->setBannerImage($this->getReference("hoshiBanner"))
                     ->addStyle($this->getReference("french"))
                     ->addStyle($this->getReference("pop"));
 
@@ -91,24 +91,24 @@ class BandFixture extends Fixture implements DependentFixtureInterface
         $benMazue   ->setName("Ben Mazué")
                     ->addArtist($this->getReference("benMazue"))
                     ->setDescription("Benjamin Mazuet, dit Ben Mazué, est un auteur-compositeur-interprète et musicien français, né le 24 janvier 1981 à Nice. Il se lance dans la musique à l'âge de 25 ans. Récompensé par le prix SACEM des découvertes en 2006 et le prix Paris Jeunes Talents en 2008, il est lauréat du FAIR en 2010. Mazué signe chez Columbia, qui édite son premier album en 2011.")
-                    ->setCoverImage("img/band/benMazue-cover.jpg")
-                    ->setBannerImage("img/band/benMazue-banner.jpg")
+                    ->setCoverImage($this->getReference("benMazueCover"))
+                    ->setBannerImage($this->getReference("benMazueBanner"))
                     ->addStyle($this->getReference("french"));
 
         $suzane     = new Band();
         $suzane     ->setName("Suzane")
                     ->addArtist($this->getReference("suzane"))
                     ->setDescription("Océane Colom, dite Suzane, née le 29 décembre 1990 à Avignon, est une auteure-compositrice-interprète française. Elle se fait connaître en 2019 par sa présence sur la scène française, avant de publier son premier album, Toï Toï, l'année suivante. Elle est récompensée de la Victoire de la révélation scène lors des Victoires de la musique 2020.")
-                    ->setCoverImage("img/band/suzane-cover.png")
-                    ->setBannerImage("img/band/suzane-banner.jpg")
+                    ->setCoverImage($this->getReference("suzaneCover"))
+                    ->setBannerImage($this->getReference("suzaneBanner"))
                     ->addStyle($this->getReference("french"));
 
         $stromae    = new Band();
         $stromae    ->setName("Stromae")
                     ->addArtist($this->getReference("stromae"))
                     ->setDescription("Stromae , de son vrai nom Paul Van Haver, né le 12 mars 1985 à Bruxelles, est un auteur-compositeur-interprète belge d'origine belgo-rwandaise. Il s'illustre autant dans le hip-hop que dans la musique électronique en passant par la chanson française.")
-                    ->setCoverImage("img/band/stromae-cover.jpg")
-                    ->setBannerImage("img/band/stromae-banner.jpg")
+                    ->setCoverImage($this->getReference("stromaeCover"))
+                    ->setBannerImage($this->getReference("stromaeBanner"))
                     ->addStyle($this->getReference("french"))
                     ->addStyle($this->getReference("hipHop"));
 
@@ -149,6 +149,7 @@ class BandFixture extends Fixture implements DependentFixtureInterface
         return [
             ArtistFixture::class,
             StyleFixture::class,
+            ImageFixture::class,
         ];
     }
 }

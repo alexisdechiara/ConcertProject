@@ -16,7 +16,9 @@
                             <tr>
                                 <th scope="col" class="text-sm font-medium text-gray-900 p-4 text-center">id</th>
                                 <th scope="col" class="text-sm font-medium text-gray-900 p-4 text-left">Nom</th>
-                                <th scope="col" class="text-sm font-medium text-gray-900 p-4 text-left">Desciption</th>
+                                <th scope="col" class="text-sm font-medium text-gray-900 p-4 text-left">Date</th>
+                                <th scope="col" class="text-sm font-medium text-gray-900 p-4 text-left">Time</th>
+                                <th scope="col" class="text-sm font-medium text-gray-900 p-4 text-left">Description</th>
                                 <th scope="col" class="text-sm font-medium text-gray-900 pl-4 pr-2 text-left"></th>
                                 <th scope="col" class="text-sm font-medium text-gray-900 px-2 text-left"></th>
                                 <th scope="col" class="text-sm font-medium text-gray-900 pr-4 pl-2 text-left"></th>
@@ -28,6 +30,8 @@
                                 <tr class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
                                     <td class="text-sm text-gray-900 font-medium p-4 whitespace-nowrap ">{{ concert.getId() }}</td>
                                     <td class="text-sm text-gray-900 font-light p-4 whitespace-nowrap">{{ concert.getName() }}</td>
+                                    <td class="text-sm text-gray-900 font-light p-4 whitespace-nowrap">{{ concert.getDate()|date("d/m/Y") }}</td>
+                                    <td class="text-sm text-gray-900 font-light p-4 whitespace-nowrap">{{ concert.getTime()|date("H:i") }}</td>
                                     <td class="text-sm text-gray-900 font-light p-4 whitespace-pre-line text-justify">{{ concert.getDescription() }}</td>
                                     <td class="text-sm text-gray-900 font-light pl-4 pr-2 whitespace-pre-line">
                                         <div class="flex space-x-2">

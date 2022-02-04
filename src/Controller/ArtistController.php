@@ -3,6 +3,7 @@
     namespace App\Controller;
 
     use App\Entity\Artist;
+    use App\Entity\Image;
     use App\Form\ArtistFormType;
     use App\Form\BandFormType;
     use App\Repository\ArtistRepository;
@@ -24,9 +25,14 @@
 
             if ($form->isSubmitted() && $form->isValid()) {
 
-                $show = $form->getData();
+                $data = $form->getData();
+                if($file = $form->get('picture')->getData()) {
+                    $image = new Image();
+                    $image->setFile($file);
+                    $data->setPicture($image);
+                }
 
-                $entityManager->persist($show);
+                $entityManager->persist($data);
                 $entityManager->flush();
                 return $this->redirectToRoute('adminArtists');
 
@@ -45,9 +51,13 @@
 
             if ($form->isSubmitted() && $form->isValid()) {
 
-                $show = $form->getData();
+                $edit = $form->getData();
+                $file = $form->get('picture')->getData();
+                $image = new Image();
+                $image->setFile($file);
+                $edit->setPicture($image);
 
-                $entityManager->persist($show);
+                $entityManager->persist($edit);
                 $entityManager->flush();
                 return $this->redirectToRoute('adminArtists');
 

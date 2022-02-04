@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Image;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Form\ProfileFormType;
@@ -22,9 +23,14 @@ class UserController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $show = $form->getData();
+            $data = $form->getData();
+            if($file = $form->get('profileImage')->getData()) {
+                $image = new Image();
+                $image->setFile($file);
+                $data->setProfileImage($image);
+            }
 
-            $entityManager->persist($show);
+            $entityManager->persist($data);
             $entityManager->flush();
         }
 

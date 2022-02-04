@@ -31,7 +31,7 @@
                                         <td class="text-sm text-gray-900 font-light p-4 whitespace-pre-line">{{ user.getLastName() }}</td>
                                         <td class="text-sm text-gray-900 font-light p-4 whitespace-nowrap">{{ user.getUserIdentifier() }}</td>
                                         <td class="text-sm text-gray-900 font-light p-4 whitespace-nowrap">{% for role in user.getRoles() %} {{ role}} {% endfor %}</td>
-                                        <td class="text-sm text-gray-900 font-light p-4 whitespace-nowrap">{{ user.getCreationDate()|date("d/m/Y h:m T") }}</td>
+                                        <td class="text-sm text-gray-900 font-light p-4 whitespace-nowrap">{{ user.getCreationDate()|date("d/m/Y H:i T") }}</td>
                                     </tr>
                                 {% endfor %}
                             </tbody>
