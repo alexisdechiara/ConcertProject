@@ -67,3 +67,5 @@
 /.web-server-pid
 
 /.idea/sonarlint
+
+/public/img/*

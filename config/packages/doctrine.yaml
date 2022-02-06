@@ -11,6 +11,9 @@ doctrine:
         auto_mapping: true
         dql:
             string_functions:
+                HOUR: DoctrineExtensions\Query\Mysql\Hour
+                DAY: DoctrineExtensions\Query\Mysql\Day
+                WEEK: DoctrineExtensions\Query\Mysql\Week
                 MONTH: DoctrineExtensions\Query\Mysql\Month
                 YEAR: DoctrineExtensions\Query\Mysql\Year
         mappings:

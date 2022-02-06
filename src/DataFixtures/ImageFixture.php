@@ -132,6 +132,35 @@ class ImageFixture extends Fixture
         $nonanteCinqTourBanner          = new Image();
         $nonanteCinqTourBanner          ->setFile(new UploadedFile("src/DataFixtures/img/concert/nonanteCinqTour-banner.jpg", 'nonanteCinq', "image/jpg",null,true));
 
+        $bigfloEtOliTourCover        = new Image();
+        $bigfloEtOliTourCover        ->setFile(new UploadedFile("src/DataFixtures/img/concert/bigFloEtOliTour-cover.jpg", 'bigfloEtOliTour', "image/jpg",null,true));
+        $bigfloEtOliTourBanner          = new Image();
+        $bigfloEtOliTourBanner          ->setFile(new UploadedFile("src/DataFixtures/img/concert/bigFloEtOliTour-banner.jpg", 'bigFloEtOliTour', "image/jpg",null,true));
+
+        $barbaraTourCover         = new Image();
+        $barbaraTourCover         ->setFile(new UploadedFile("src/DataFixtures/img/concert/barbaraTour-cover.jpg", 'barbaraTour', "image/jpg",null,true));
+        $barbaraTourBanner        = new Image();
+        $barbaraTourBanner        ->setFile(new UploadedFile("src/DataFixtures/img/concert/barbaraTour-banner.jpg", 'barbaraTour', "image/jpg",null,true));
+
+        $hoshiTourCover         = new Image();
+        $hoshiTourCover         ->setFile(new UploadedFile("src/DataFixtures/img/concert/hoshiTour-cover.jpg", 'hoshiTour', "image/jpg",null,true));
+        $hoshiTourBanner        = new Image();
+        $hoshiTourBanner        ->setFile(new UploadedFile("src/DataFixtures/img/concert/hoshiTour-banner.jpg", 'hoshiTour', "image/jpg",null,true));
+
+        $orelsanTourCover         = new Image();
+        $orelsanTourCover         ->setFile(new UploadedFile("src/DataFixtures/img/concert/orelsanTour-cover.jpg", 'orelsanTour', "image/jpg",null,true));
+        $orelsanTourBanner        = new Image();
+        $orelsanTourBanner        ->setFile(new UploadedFile("src/DataFixtures/img/concert/orelsanTour-banner.jpg", 'orelsanTour', "image/jpg",null,true));
+
+        $paradisTourCover         = new Image();
+        $paradisTourCover         ->setFile(new UploadedFile("src/DataFixtures/img/concert/paradisTour-cover.jpg", 'paradisTour', "image/jpg",null,true));
+        $paradisTourBanner        = new Image();
+        $paradisTourBanner        ->setFile(new UploadedFile("src/DataFixtures/img/concert/paradisTour-banner.jpg", 'paradisTour', "image/jpg",null,true));
+
+        $lesEnfoiresCover         = new Image();
+        $lesEnfoiresCover         ->setFile(new UploadedFile("src/DataFixtures/img/concert/lesEnfoires-cover.jpg", 'lesEnfoires', "image/jpg",null,true));
+        $lesEnfoiresBanner        = new Image();
+        $lesEnfoiresBanner        ->setFile(new UploadedFile("src/DataFixtures/img/concert/lesEnfoires-banner.jpg", 'lesEnfoires', "image/jpg",null,true));
 
         $manager->persist($pommePicture);
         $manager->persist($calogeroPicture);
@@ -161,11 +190,6 @@ class ImageFixture extends Fixture
         $manager->persist($gcmCover);
         $manager->persist($louaneCover);
         $manager->persist($stromaeCover);
-        $manager->persist($failleTourCover);
-        $manager->persist($calogeroConcertCover);
-        $manager->persist($multitudeTourCover);
-        $manager->persist($toiToiCover);
-        $manager->persist($nonanteCinqTourCover);
 
         $manager->persist($pommeBanner);
         $manager->persist($calogeroBanner);
@@ -180,11 +204,31 @@ class ImageFixture extends Fixture
         $manager->persist($gcmBanner);
         $manager->persist($louaneBanner);
         $manager->persist($stromaeBanner);
+
+        $manager->persist($failleTourCover);
+        $manager->persist($calogeroConcertCover);
+        $manager->persist($multitudeTourCover);
+        $manager->persist($toiToiCover);
+        $manager->persist($nonanteCinqTourCover);
+        $manager->persist($bigfloEtOliTourCover);
+        $manager->persist($barbaraTourCover);
+        $manager->persist($hoshiTourCover);
+        $manager->persist($orelsanTourCover);
+        $manager->persist($paradisTourCover);
+        $manager->persist($lesEnfoiresCover);
+
         $manager->persist($failleTourBanner);
         $manager->persist($calogeroConcertBanner);
         $manager->persist($multitudeTourBanner);
         $manager->persist($toiToiBanner);
         $manager->persist($nonanteCinqTourBanner);
+        $manager->persist($bigfloEtOliTourBanner);
+        $manager->persist($barbaraTourBanner);
+        $manager->persist($hoshiTourBanner);
+        $manager->persist($orelsanTourBanner);
+        $manager->persist($paradisTourBanner);
+        $manager->persist($lesEnfoiresBanner);
+
 
         $manager->flush();
 
@@ -216,11 +260,6 @@ class ImageFixture extends Fixture
         $this->addReference("gcmCover", $gcmCover);
         $this->addReference("louaneCover", $louaneCover);
         $this->addReference("stromaeCover", $stromaeCover);
-        $this->addReference("failleTourCover", $failleTourCover);
-        $this->addReference("calogeroConcertCover", $calogeroConcertCover);
-        $this->addReference("multitudeTourCover", $multitudeTourCover);
-        $this->addReference("toiToiCover", $toiToiCover);
-        $this->addReference("nonanteCinqTourCover", $nonanteCinqTourCover);
 
         $this->addReference("pommeBanner", $pommeBanner);
         $this->addReference("calogeroBanner", $calogeroBanner);
@@ -235,10 +274,29 @@ class ImageFixture extends Fixture
         $this->addReference("gcmBanner", $gcmBanner);
         $this->addReference("louaneBanner", $louaneBanner);
         $this->addReference("stromaeBanner", $stromaeBanner);
+
+        $this->addReference("failleTourCover", $failleTourCover);
+        $this->addReference("calogeroConcertCover", $calogeroConcertCover);
+        $this->addReference("multitudeTourCover", $multitudeTourCover);
+        $this->addReference("toiToiCover", $toiToiCover);
+        $this->addReference("nonanteCinqTourCover", $nonanteCinqTourCover);
+        $this->addReference("bigfloEtOliTourCover", $bigfloEtOliTourCover);
+        $this->addReference("barbaraTourCover", $barbaraTourCover);
+        $this->addReference("hoshiTourCover", $hoshiTourCover);
+        $this->addReference("orelsanTourCover", $orelsanTourCover);
+        $this->addReference("paradisTourCover", $paradisTourCover);
+        $this->addReference("lesEnfoiresCover", $lesEnfoiresCover);
+
         $this->addReference("failleTourBanner", $failleTourBanner);
         $this->addReference("calogeroConcertBanner", $calogeroConcertBanner);
         $this->addReference("multitudeTourBanner", $multitudeTourBanner);
         $this->addReference("toiToiBanner", $toiToiBanner);
         $this->addReference("nonanteCinqTourBanner", $nonanteCinqTourBanner);
+        $this->addReference("bigfloEtOliTourBanner", $bigfloEtOliTourBanner);
+        $this->addReference("barbaraTourBanner", $barbaraTourBanner);
+        $this->addReference("hoshiTourBanner", $hoshiTourBanner);
+        $this->addReference("orelsanTourBanner", $orelsanTourBanner);
+        $this->addReference("paradisTourBanner", $paradisTourBanner);
+        $this->addReference("lesEnfoiresBanner", $lesEnfoiresBanner);
     }
 }

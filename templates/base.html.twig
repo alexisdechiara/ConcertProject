@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title>ConcertProject - {% block title %}{% endblock %}</title>
-        <link rel="icon" href="{{ asset('img/favicon.png') }}">
+        <link rel="icon" href="{{ asset('favicon.png') }}">
         <script src="https://cdn.tailwindcss.com"></script>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/index.min.css" />
         <script>
@@ -30,11 +30,10 @@
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
     </head>
-    <header>
-        {% include('navbar.html.twig') %}
-    </header>
-    <body>
-        {% block body %}{% endblock %}
+    <body class="h-screen flex flex-col">
+    <header>{% include('navbar.html.twig') %}</header>
+    <main class="flex flex-col flex-grow w-full">{% block body %}{% endblock %}</main>
+    <footer>{% include('footer.html.twig') %}</footer>
     </body>
     <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>
 </html>

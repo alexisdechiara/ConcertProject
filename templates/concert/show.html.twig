@@ -5,7 +5,7 @@
 {% block body %}
 
     <div class="container p-12 pt-0">
-        <div class="flex flex-col border rounded-lg {{ concert.getParticipates()|length > 1 ? 'my-12' : 'mt-12'}} overflow-hidden">
+        <div class="flex flex-col border rounded-lg my-12 overflow-hidden">
             <img src="{{ vich_uploader_asset(concert.getBannerImage(),'file') }}" class="h-64 aspect-[3/1] object-cover object-center" alt="cover image"/>
             <div class="grid grid-cols-3 gap-4 p-4">
                 <div class="col-span-2">
@@ -50,12 +50,12 @@
         </div>
         <div class="grid grid-row-1 gap-4 mb-12">
 
-            {% if concert.getParticipates()|length > 1 %}
+            {% if concert.getParticipates()|length > 0 %}
 
                 {% for participate in concert.getParticipates() %}
 
                     <div class="grid grid-cols-6 border rounded-lg overflow-hidden">
-                        <div class="col-span-1 bg-[url('{{ participate.getBand().getArtists()|length == 1 ? (participate.getBand().getArtists()|first).getPicture() : participate.getBand().getProfileImage() }}')] bg-cover bg-top"></div>
+                        <div class="col-span-1 bg-[url('{{ participate.getBand().getArtists()|length == 1 ? vich_uploader_asset((participate.getBand().getArtists()|first).getPicture(),'file') : vich_uploader_asset(participate.getBand().getCoverImage(), 'file') }}')] bg-cover bg-top"></div>
                         <div class="col-span-5 flex flex-col ml-4 place-content-center ml-8 py-8">
                             <h3 class="block text-xl font-medium mb-1"> {{ participate.getBand().getName() }}</h3>
                             <div class="block text-gray-400 font-medium text-sm mb-2">
@@ -77,6 +77,9 @@
             {% endif %}
 
         </div>
+        {% if is_granted('ROLE_ADMIN') %}
+            {{ include("component/edit.html.twig", {valuePath: 'concertEdit', valueId: concert.getId()})}}
+        {% endif %}
     </div>
 
 {% endblock %}

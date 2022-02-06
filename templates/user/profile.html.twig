@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}ConcertProject - {{ user.getFirstName() }} {{ user.getLastName() }}{% endblock %}
+{% block title %}{{ user.getFirstName() }} {{ user.getLastName() }}{% endblock %}
 
 {% block body %}
 
@@ -8,7 +8,7 @@
         <div class="mt-16">
             {{ form_start(profileForm) }}
             <div class="grid grid-cols-12 gap-4">
-                <img class="col-span-3 rounded-full w-32 shadow" src=" {{  asset('img/user-dark.svg') }}" alt="">
+                <img class="col-span-3 rounded-full w-32 shadow" src=" {{ user.getProfileImage() ? vich_uploader_asset(user.getProfileImage(),'file') : asset('user-dark.svg') }}" alt="">
                 <div class="col-span-9 flex flex-col">
                     <div class="grid grid-cols-2 gap-4">
                         {{ form_row(profileForm.firstName) }}
@@ -16,7 +16,8 @@
                     </div>
                     {{ form_row(profileForm.email) }}
                     {{ form_row(profileForm.profileImage) }}
-                    {{ form_row(profileForm.password) }}
+                    {{ form_row(profileForm.oldPassword) }}
+                    {{ form_row(profileForm.newPassword) }}
                     {{ form_row(profileForm.submit) }}
                 </div>
             </div>

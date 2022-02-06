@@ -28,7 +28,20 @@ class ConcertController extends AbstractController
             'todayConcerts' => $concerts->findToday(),
             'thisWeekConcerts' => $concerts->findThisWeek(),
             'thisMonthConcerts' => $concerts->findThisMonth(),
-            'otherConcerts' => $concerts->findBy(array(), array('date' => 'ASC')),
+            'otherConcerts' => $concerts->findLater(),
+        ]);
+    }
+
+    #[Route('/archive', name:"concertArchive")]
+    public function archive(ConcertRepository $concerts): Response
+    {
+        $archivedConcerts = null;
+        foreach ($concerts->findPreviousYear() as $year) {
+            $value = $year[1];
+            $archivedConcerts[(string) $value] = $concerts->findPreviousByYear((string) $value);
+        }
+        return $this->render('concert/archive.html.twig', [
+            'archivedConcerts' => $archivedConcerts,
         ]);
     }
 

@@ -26,11 +26,11 @@
             {{ form_row(concertForm.coverFile) }}
             {{ form_row(concertForm.bannerFile) }}
             {{ form_row(concertForm.hall) }}
-            <div id="participates" data-prototype="{{ include("concert/participate.html.twig", {participateForm: concertForm.participates.vars.prototype})|e("html_attr") }}" data-index="{{ concertForm.participates|length > 0 ? concertForm.participates|last.vars.name + 1 : 0 }}" class="flex grid grid-cols-1 gap-4 mt-16 border border-2 border-blue-600 p-8 rounded-t-lg">
+            <div id="participates" data-prototype="{{ include("component/participate.html.twig", {participateForm: concertForm.participates.vars.prototype})|e("html_attr") }}" data-index="{{ concertForm.participates|length > 0 ? concertForm.participates|last.vars.name + 1 : 0 }}" class="flex grid grid-cols-1 gap-4 mt-16 border border-2 border-blue-600 p-8 rounded-t-lg">
                 <span class="inline-block w-fit mx-auto px-2 text-4xl font-bold text-blue-600 -mt-14 bg-gray-50">Bands participating</span>
                 {% for participateForm in concertForm.participates %}
                     <div class="participate-form border shadow-md p-4 bg-white">
-                        {{ include("concert/participate.html.twig", {participateForm: participateForm}) }}
+                        {{ include("component/participate.html.twig", {participateForm: participateForm}) }}
                     </div>
                 {% endfor %}
             </div>

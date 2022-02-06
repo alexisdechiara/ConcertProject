@@ -28,9 +28,29 @@ class ProfileFormType extends AbstractType
                     ->add('lastName', TextType::class, [
                         'label' =>'Last name'
                     ])
-                    ->add('password', PasswordType::class, [
+                    ->add('oldPassword', PasswordType::class, [
                         'always_empty' => true,
-                        'label' => 'Password',
+                        'mapped' => false,
+                        'required' => false,
+                        'label' => 'Current password',
+                        'attr' => ['autocomplete' => 'old-password'],
+                        'constraints' => [
+                            new NotBlank([
+                                'message' => 'Please enter a password',
+                            ]),
+                            new Length([
+                                'min' => 6,
+                                'minMessage' => 'Your password should be at least {{ limit }} characters',
+                                // max length allowed by Symfony for security reasons
+                                'max' => 4096,
+                            ]),
+                        ]
+                    ])
+                    ->add('newPassword', PasswordType::class, [
+                        'always_empty' => true,
+                        'mapped' => false,
+                        'required' => false,
+                        'label' => 'New Password',
                         'attr' => ['autocomplete' => 'new-password'],
                         'constraints' => [
                             new NotBlank([
@@ -45,9 +65,15 @@ class ProfileFormType extends AbstractType
                         ]
                     ])
                     ->add('profileImage', FileType::class, [
-                        'label' => 'Profile Image',
+                        'label' => 'Profile image',
                         'mapped' => false,
                         'required' => false,
+                        'constraints' => [
+                            new File([
+                                'mimeTypes' => ["image/jpg", "image/jpeg", "image/png", "image/webp"],
+                                'mimeTypesMessage' => "JPG, JPEG, PNG or WEBP accepted",
+                            ])
+                        ],
                     ])
                     ->add('submit', SubmitType::class)
         ;
