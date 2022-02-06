@@ -12,6 +12,7 @@ use App\Repository\ConcertRepository;
 use App\Repository\ParticipateRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\NonUniqueResultException;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,7 +22,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ConcertController extends AbstractController
 {
 
-     #[Route('/', name:"concertList")]
+    #[Route('/', name:"concertList")]
     public function list(ConcertRepository $concerts): Response
     {
         return $this->render('concert/list.html.twig', [
@@ -45,6 +46,7 @@ class ConcertController extends AbstractController
         ]);
     }
 
+    #[IsGranted("ROLE_ADMIN")]
     #[Route("/new", name: "concertNew")]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -84,6 +86,7 @@ class ConcertController extends AbstractController
         ]);
     }
 
+    #[IsGranted("ROLE_ADMIN")]
     #[Route("/{id}/edit", name: "concertEdit")]
     public function edit(ConcertRepository $concerts, Request $request, EntityManagerInterface $entityManager, int $id): Response
     {
@@ -114,6 +117,7 @@ class ConcertController extends AbstractController
         ]);
     }
 
+    #[IsGranted("ROLE_ADMIN")]
     #[Route("/{id}/delete", name: "concertDelete")]
     public function delete(ConcertRepository $concerts, EntityManagerInterface $entityManager, int $id): Response
     {
