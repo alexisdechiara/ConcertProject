@@ -9,6 +9,7 @@
     use App\Repository\BandRepository;
     use App\Repository\ConcertRepository;
     use Doctrine\ORM\EntityManagerInterface;
+    use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
     use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
     use Symfony\Component\HttpFoundation\Request;
     use Symfony\Component\HttpFoundation\Response;
@@ -27,6 +28,7 @@
         }
 
 
+        #[IsGranted("ROLE_ADMIN")]
         #[Route("/new", name: "bandNew")]
         public function new(Request $request, EntityManagerInterface $entityManager): Response
         {
@@ -58,6 +60,7 @@
             ]);
         }
 
+        #[IsGranted("ROLE_ADMIN")]
         #[Route("/{id}/edit", name: "bandEdit")]
         public function edit(BandRepository $bands, Request $request, EntityManagerInterface $entityManager, int $id): Response
         {
@@ -89,6 +92,7 @@
             ]);
         }
 
+        #[IsGranted("ROLE_ADMIN")]
         #[Route("/{id}/delete", name: "bandDelete")]
         public function delete(BandRepository $bands, EntityManagerInterface $entityManager, int $id): Response
         {
