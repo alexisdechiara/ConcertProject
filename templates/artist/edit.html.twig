@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Artist creation{% endblock %}
+
+{% block body %}
+    <div class="grid grid-cols-9">
+        <div class="col-span-1">
+            {% include 'admin/aside.html.twig' %}
+        </div>
+        <div class="col-span-8">
+            <div class="flex flex-col bg-slate-50 h-full p-8">
+                {{ form_start(artistForm) }}
+
+                <div class="grid grid-cols-3 gap-4">
+                    {{ form_row(artistForm.stageName) }}
+                    {{ form_row(artistForm.firstName) }}
+                    {{ form_row(artistForm.lastName) }}
+                </div>
+                <div class="grid grid-cols-3 gap-4">
+                    {{ form_row(artistForm.role) }}
+                    <div class="datepicker relative form-floating mb-3 xl:w-96" data-mdb-toggle-button="false">
+                        {{ form_row(artistForm.birthDay) }}
+                    </div>
+                    {{ form_row(artistForm.picture) }}
+                </div>
+                <div class="flex">
+                    {{ form_row(artistForm.gender) }}
+                </div>
+                {{ form_row(artistForm.submit) }}
+                {{ form_end(artistForm) }}
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

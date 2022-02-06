@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+
+<div class="grid grid-cols-9">
+    <div class="col-span-1">
+        {% include 'admin/aside.html.twig' %}
+    </div>
+    <div class="col-span-8">
+        <div class="flex flex-col bg-slate-50 h-full p-8">
+            {{ form_start(concertForm) }}
+            {{ form_row(concertForm._token) }}
+            {{ form_row(concertForm.name) }}
+            {{ form_row(concertForm.description) }}
+            <div class="grid grid-cols-3 gap-4">
+                <div class="datepicker relative form-floating mb-3 xl:w-96" data-mdb-toggle-button="false">
+                    {{ form_row(concertForm.date) }}
+                </div>
+                <div class="timepicker relative form-floating mb-3 xl:w-96" data-mdb-with-icon="false">
+                    {{ form_row(concertForm.time) }}
+                </div>
+                    {{ form_row(concertForm.duration) }}
+            </div>
+            {{ form_row(concertForm.coverFile) }}
+            {{ form_row(concertForm.bannerFile) }}
+            {{ form_row(concertForm.hall) }}
+            <div id="participates" data-prototype="{{ include("component/participate.html.twig", {participateForm: concertForm.participates.vars.prototype})|e("html_attr") }}" data-index="{{ concertForm.participates|length > 0 ? concertForm.participates|last.vars.name + 1 : 0 }}" class="flex grid grid-cols-1 gap-4 mt-16 border border-2 border-blue-600 p-8 rounded-t-lg">
+                <span class="inline-block w-fit mx-auto px-2 text-4xl font-bold text-blue-600 -mt-14 bg-gray-50">Bands participating</span>
+                {% for participateForm in concertForm.participates %}
+                    <div class="participate-form border shadow-md p-4 bg-white">
+                        {{ include("component/participate.html.twig", {participateForm: participateForm}) }}
+                    </div>
+                {% endfor %}
+            </div>
+            <button type="button" id="btn-new" data-mdb-ripple="true" data-mdb-ripple-color="light" data-collection="#participates" class="block w-full px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded-b-lg shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">Add</button>
+            {{ form_row(concertForm.submit) }}
+            {{ form_end(concertForm, {render_rest: false}) }}
+        </div>
+    </div>
+</div>
+
+
+    <script>
+	    document.addEventListener("DOMContentLoaded", () =>  {
+			    function newItem() {
+				    const collectionHolder = document.querySelector(this.dataset.collection);
+				    const item = document.createElement("div");
+				    item.classList.add('participate-form', 'border', 'shadow-md', 'p-4', 'bg-white');
+				    item.innerHTML = collectionHolder.dataset.prototype.replace(/__name__/g, collectionHolder.dataset.index);
+
+				    item.querySelector(".btn-remove").addEventListener("click", () => item.remove());
+				    collectionHolder.appendChild(item);
+
+				    collectionHolder.dataset.index++;
+			    };
+
+			    document.querySelectorAll('.btn-remove').forEach(btn => btn.addEventListener("click", (e) => {
+				    e.currentTarget.closest(".participate-form").remove();
+			    }));
+
+			    document.getElementById('btn-new').addEventListener("click", newItem);
+	    });
+    </script>
+{% endblock %}
+
+

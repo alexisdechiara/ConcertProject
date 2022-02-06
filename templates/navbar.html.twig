@@ -1,0 +1,64 @@
+<div class="min-h-full">
+    <nav class="bg-gray-800">
+        <div class="w-full px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <img class="h-8 w-8" src="{{ asset('img/favicon.png') }}" alt="Workflow">
+                    </div>
+                    <div class="hidden md:block">
+                        <div class="ml-10 flex items-baseline space-x-4">
+                            <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+                            <a href="{{ path('homepage') }}" class=" {{ app.request.attributes.get( '_route' ) starts with relative_path('homepage') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }} px-3 py-2 rounded-md text-sm font-medium" aria-current="page">Home</a>
+                            <div class="dropdown relative">
+                                <a href="" class=" dropdown-toggle {{ app.request.attributes.get( '_route' ) starts with relative_path('concertList') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }} px-3 py-2 rounded-md text-sm font-medium flex items-center whitespace-nowrap" id="dropdownButton" data-bs-toggle="dropdown" aria-expanded="false" > Concerts
+                                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="caret-down" class="w-2 ml-2" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" >
+                                        <path fill="currentColor" d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z" ></path>
+                                    </svg>
+                                </a>
+                                <ul class=" dropdown-menu min-w-max absolute hidden bg-white text-base z-50 float-left py-2 list-none text-left rounded-lg shadow-lg mt-1 hidden m-0 bg-clip-padding border-none cursor-pointer	" aria-labelledby="dropdownButton" >
+                                    <li><a class="dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100" href="{{ path('concertList') }}" >Upcoming</a ></li>
+                                    <li><a class=" dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100" href="{{ path('concertArchive') }}" >Archive</a ></li>
+                                </ul>
+                            </div>
+                            <a href="{{ path('bandList') }}" class=" {{ app.request.attributes.get( '_route' ) starts with relative_path('bandList') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }} px-3 py-2 rounded-md text-sm font-medium">Bands</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-4 flex items-center md:ml-6">
+
+                        {% if app.user %}
+
+                            <div class="text-white">
+                                Hi <span class="font-thin">{{ app.user.getFirstName() }} {{ app.user.getLastName() }}</span>
+                            </div>
+                            <!-- Profile dropdown -->
+                            <div class="ml-3 dropdown relative">
+                                <button type="button" data-bs-toggle="dropdown" class="dropdown-toggle max-w-xs bg-gray-800 rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+                                    <span class="sr-only">Open user menu</span>
+                                        <img class="h-8 w-8 rounded-full text-white" src="{{ app.user.getProfileImage() ? vich_uploader_asset(app.user.getProfileImage(),'file') :  asset('user-light.svg') }}" alt="">
+                                </button>
+
+                                <ul id="profile" class="dropdown-menu hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
+                                    <li><a href="{{ path('profile') }}"  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" tabindex="-1" id="user-menu-item-0">Profile</a></li>
+                                    {% if is_granted('ROLE_ADMIN') %}
+                                        <li><a href="{{ path('adminDashboard') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" tabindex="-1" id="user-menu-item-1">Dashboard</a></li>
+                                    {% endif %}
+                                    <li><a href="{{ path('app_logout') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" tabindex="-1" id="user-menu-item-2">Log out</a></li>
+                                </ul>
+                            </div>
+
+                        {% else%}
+
+                            <a href="{{ path('app_login') }}" class="text-white hover:text-indigo-600 mr-4 uppercase text-xs">Sign in</a>
+                            <div class="flex space-x-2 justify-center">
+                                <a href="{{ path('app_register') }}" data-mdb-ripple="true" data-mdb-ripple-color="light" class="inline-block px-2 py-1.5 bg-indigo-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-indigo-700 hover:shadow-lg focus:bg-indigo-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-indigo-800 active:shadow-lg transition duration-150 ease-in-out uppercase">Sign up</a>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>

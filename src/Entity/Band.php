@@ -6,6 +6,8 @@ use App\Repository\BandRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use JetBrains\PhpStorm\Pure;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass=BandRepository::class)
@@ -25,28 +27,40 @@ class Band
     private $name;
 
     /**
-     * @ORM\Column(type="blob", nullable=true)
-     */
-    private $picture;
-
-    /**
-     * @ORM\ManyToMany(targetEntity=artist::class, inversedBy="bands")
+     * @ORM\ManyToMany(targetEntity=Artist::class, inversedBy="bands")
      */
     private $artists;
 
-
     /**
-     * @ORM\ManyToMany(targetEntity=style::class)
+     * @ORM\ManyToMany(targetEntity=Style::class)
      */
     private $styles;
 
     /**
      * @ORM\OneToMany(targetEntity=Participate::class, mappedBy="band", orphanRemoval=true)
      */
+
     private $participates;
 
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $description;
 
-    public function __construct()
+    /**
+     * @ORM\OneToOne(targetEntity=Image::class, cascade={"persist", "remove"}, orphanRemoval=true)
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $coverImage;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Image::class, cascade={"persist", "remove"}, orphanRemoval=true)
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $bannerImage;
+
+
+    #[Pure] public function __construct()
     {
         $this->artists = new ArrayCollection();
         $this->styles = new ArrayCollection();
@@ -70,14 +84,26 @@ class Band
         return $this;
     }
 
-    public function getPicture()
+    public function getCoverImage(): ?Image
     {
-        return $this->picture;
+        return $this->coverImage;
     }
 
-    public function setPicture($picture): self
+    public function setCoverImage(?Image $coverImage): self
     {
-        $this->picture = $picture;
+        $this->coverImage = $coverImage;
+
+        return $this;
+    }
+
+    public function getBannerImage(): ?Image
+    {
+        return $this->bannerImage;
+    }
+
+    public function setBannerImage(?Image $bannerImage): self
+    {
+        $this->bannerImage = $bannerImage;
 
         return $this;
     }
@@ -156,6 +182,18 @@ class Band
                 $participate->setBand(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
 
         return $this;
     }

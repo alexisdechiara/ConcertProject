@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bands and artists{% endblock %}
+
+{% block body %}
+    <div class="container p-8 relative">
+        <h1 class="text-center text-6xl mt-2 font-medium">Bands and artists</h1>
+        <div class="grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 mt-16">
+            {% for band in bands %}
+                <a href="{{ path('bandShow', {'id': band.getId() }) }}" class="bg-[url('{{ band.getCoverImage() ? vich_uploader_asset(band.getCoverImage(),'file') : band.getArtists()|length != 1 ? vich_uploader_asset(band.getBannerImage(),'file') : vich_uploader_asset((band.getArtists()|first).getPicture(),'file') }}')] bg-origin-border bg-cover bg-top border hover:scale-110 ease-in-out duration-300 rounded overflow-hidden flex-nowrap shadow-md cursor-pointer p-4">
+                    <div class="block text-2xl font-bold pt-16 text-white">
+                        {{  band.getName() }}
+                    </div>
+                    <div class="flex flex-row mt-2">
+                        {% for style in band.getStyles() %}
+                            <div class="inline-block text-md bg-white/50 text-white text-xs px-2 py-0.5 mx-1 border-0 rounded-lg uppercase font-medium">
+                                {{ style.getName() }}
+
+                            </div>
+                        {% endfor %}
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+        {% if is_granted('ROLE_ADMIN') %}
+            {{ include("component/add.html.twig", {valuePath: 'bandNew'})}}
+        {% endif %}
+    </div>
+
+{% endblock %}
+
+
+

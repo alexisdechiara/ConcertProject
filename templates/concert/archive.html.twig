@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Archive{% endblock %}
+
+{% block body %}
+    <div class="container-lg p-8 mx-8">
+        <h1 class="text-center text-6xl my-2 font-medium mb-4">Archived concerts</h1>
+            {% for year, concerts in archivedConcerts %}
+                <h2 class="text-4xl mt-6 font-medium mb-4">{{ year }}</h2>
+                <div class="flex flex-row flex-wrap">
+                    {% for concert in concerts %}
+                        <a href="{{ path('concertShow', {'id': concert.getId() }) }}">
+                            <img src="{{ concert.getCoverImage() ? vich_uploader_asset(concert.getCoverImage(),'file') : concert.getCoverImage() ? vich_uploader_asset(concert.getBannerImage(),'file') : '' }}"
+                                 class="h-64 m-4 aspect-[2/3] bg-origin-border object-cover object-center border hover:scale-110 ease-in-out duration-300 rounded overflow-hidden flex-nowrap shadow-lg cursor-pointer border-0" alt="cover concert"/>
+                        </a>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+    </div>
+
+{% endblock %}

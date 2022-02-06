@@ -37,14 +37,14 @@ class Building
     private $capacity;
 
     /**
-     * @ORM\Column(type="blob", nullable=true)
-     */
-    private $picture;
-
-    /**
-     * @ORM\OneToMany(targetEntity=hall::class, mappedBy="building", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Hall::class, mappedBy="building", orphanRemoval=true)
      */
     private $halls;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $mapUrl;
 
     public function __construct()
     {
@@ -92,18 +92,6 @@ class Building
         return $this;
     }
 
-    public function getPicture()
-    {
-        return $this->picture;
-    }
-
-    public function setPicture($picture): self
-    {
-        $this->picture = $picture;
-
-        return $this;
-    }
-
     /**
      * @return Collection|hall[]
      */
@@ -130,6 +118,18 @@ class Building
                 $hall->setBuilding(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getMapUrl(): ?string
+    {
+        return $this->mapUrl;
+    }
+
+    public function setMapUrl(?string $mapUrl): self
+    {
+        $this->mapUrl = $mapUrl;
 
         return $this;
     }

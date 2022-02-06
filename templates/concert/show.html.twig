@@ -1,0 +1,88 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{ concert.getName() }} {% endblock %}
+
+{% block body %}
+
+    <div class="container p-12 pt-0">
+        <div class="flex flex-col border rounded-lg my-12 overflow-hidden">
+            <img src="{{ vich_uploader_asset(concert.getBannerImage(),'file') }}" class="h-64 aspect-[3/1] object-cover object-center" alt="cover image"/>
+            <div class="grid grid-cols-3 gap-4 p-4">
+                <div class="col-span-2">
+                    <div class="flex flex-col">
+                        <div id="concert_header">
+                            <h2 class="block font-medium text-4xl mb-1">{{ concert.getName() }}</h2>
+                            {% if mainBand!=null %}
+                                <h3 class="block text-2xl italic ">{{ mainBand.getName() }}</h3>
+                            {% endif %}
+                        </div>
+                        <div class="whitespace-pre-line	mb-4 text-justify">
+                            {% if concert.getDescription() is empty and mainBand!=null %}
+                                {{ mainBand.getDescription() }}
+                            {% else %}
+                                {{ concert.getDescription() }}
+                            {% endif %}
+                        </div>
+                        <div class="flex flex-row my-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd" />
+                            </svg>
+                            <span class="block ml-2">{{ concert.getDate()|date("d/m/y") }} - {{ concert.getTime()|date("H:i" ) }}</span>
+                        </div>
+                        <div class="flex flex-row my-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd" />
+                            </svg>
+                            <span class="block ml-2">{{ concert.getDuration()|date("%h") > 0 ? concert.getDuration()|date("%hh") }} {{ concert.getDuration()|date("%m") > 0 ? concert.getDuration()|date("%Mm") }}</span>
+                        </div>
+                        <div class="flex flex-row my-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+                            </svg>
+                            <span class="block ml-2">{{ concert.getHall().getBuilding().getName() }}, salle {{ concert.getHall().getName() }} : {{ concert.getHall().getBuilding().getLocation() }}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-span-1">
+                    <iframe class="flex w-full h-full" src="{{ concert.getHall().getBuilding().getMapUrl() }}" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+        <div class="grid grid-row-1 gap-4 mb-12">
+
+            {% if concert.getParticipates()|length > 0 %}
+
+                {% for participate in concert.getParticipates() %}
+
+                    <div class="grid grid-cols-6 border rounded-lg overflow-hidden">
+                        <div class="col-span-1 bg-[url('{{ participate.getBand().getArtists()|length == 1 ? vich_uploader_asset((participate.getBand().getArtists()|first).getPicture(),'file') : vich_uploader_asset(participate.getBand().getCoverImage(), 'file') }}')] bg-cover bg-top"></div>
+                        <div class="col-span-5 flex flex-col ml-4 place-content-center ml-8 py-8">
+                            <h3 class="block text-xl font-medium mb-1"> {{ participate.getBand().getName() }}</h3>
+                            <div class="block text-gray-400 font-medium text-sm mb-2">
+                                <span>
+                                    {% if participate.getRunningPassage() == 1 %}
+                                        1ère partie
+                                    {% else %}
+                                        {{ participate.getRunningPassage() }}ème partie
+                                    {% endif %}
+                                </span>
+                                <span> - {{ participate.getDuration()|date("%h") > 0 ? participate.getDuration()|date("%hh") }} {{ participate.getDuration()|date("%m") > 0 ? participate.getDuration()|date("%Mm") }}</span>
+                            </div>
+                            <span class="block">{{ participate.getBand().getDescription() }}</span>
+                        </div>
+                    </div>
+
+                {% endfor %}
+
+            {% endif %}
+
+        </div>
+        {% if is_granted('ROLE_ADMIN') %}
+            {{ include("component/edit.html.twig", {valuePath: 'concertEdit', valueId: concert.getId()})}}
+        {% endif %}
+    </div>
+
+{% endblock %}
+
+
+

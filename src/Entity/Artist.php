@@ -3,11 +3,19 @@
 namespace App\Entity;
 
 use App\Repository\ArtistRepository;
+use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
+use JetBrains\PhpStorm\Pure;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass=ArtistRepository::class)
+ * @UniqueEntity("stageName")
+ * @Vich\Uploadable()
  */
 class Artist
 {
@@ -17,6 +25,11 @@ class Artist
      * @ORM\Column(type="integer")
      */
     private $id;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $stageName;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -34,19 +47,37 @@ class Artist
     private $role;
 
     /**
-     * @ORM\Column(type="blob", nullable=true)
-     */
-    private $picture;
-
-    /**
-     * @ORM\Column(type="string", length=8, nullable=true)
-     * @Assert\Choice({"Male", "Female", "Other"})
+     * @ORM\Column(type="smallint", nullable=true)
+     * @Assert\Range(min=0, max=2)
      */
     private $gender;
+
+    /**
+     * @ORM\Column(type="date", nullable=true)
+     */
+    private $birthDay;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Image::class, cascade={"persist", "remove"}, orphanRemoval=true)
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private ?Image $picture;
 
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getStageName(): ?string
+    {
+        return $this->stageName;
+    }
+
+    public function setStageName(string $StageName): self
+    {
+        $this->stageName = $StageName;
+
+        return $this;
     }
 
     public function getFirstName(): ?string
@@ -85,17 +116,6 @@ class Artist
         return $this;
     }
 
-    public function getPicture()
-    {
-        return $this->picture;
-    }
-
-    public function setPicture($picture): self
-    {
-        $this->picture = $picture;
-
-        return $this;
-    }
 
     public function getGender(): ?string
     {
@@ -105,6 +125,35 @@ class Artist
     public function setGender(?string $gender): self
     {
         $this->gender = $gender;
+
+        return $this;
+    }
+
+    public function getBirthDay(): ?DateTimeInterface
+    {
+        return $this->birthDay;
+    }
+
+    public function setBirthDay(?DateTimeInterface $birthDay): self
+    {
+        $this->birthDay = $birthDay;
+
+        return $this;
+    }
+
+    #[Pure] public function __toString()
+    {
+        return $this->getStageName();
+    }
+
+    public function getPicture(): ?Image
+    {
+        return $this->picture;
+    }
+
+    public function setPicture(Image $picture): self
+    {
+        $this->picture = $picture;
 
         return $this;
     }

@@ -4,9 +4,11 @@ namespace App\Entity;
 
 use App\Repository\ParticipateRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=ParticipateRepository::class)
+ * @UniqueEntity(fields={"concert", "band"})
  */
 class Participate
 {
@@ -23,16 +25,26 @@ class Participate
     private $runningPassage;
 
     /**
-     * @ORM\ManyToOne(targetEntity=concert::class, inversedBy="participates")
+     * @ORM\ManyToOne(targetEntity=Concert::class, inversedBy="participates")
      * @ORM\JoinColumn(nullable=false)
      */
     private $concert;
 
     /**
-     * @ORM\ManyToOne(targetEntity=band::class, inversedBy="participates")
+     * @ORM\ManyToOne(targetEntity=Band::class, inversedBy="participates")
      * @ORM\JoinColumn(nullable=false)
      */
     private $band;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isMainBand;
+
+    /**
+     * @ORM\Column(type="dateinterval", nullable=true)
+     */
+    private $duration;
 
     public function getId(): ?int
     {
@@ -71,6 +83,30 @@ class Participate
     public function setBand(?band $band): self
     {
         $this->band = $band;
+
+        return $this;
+    }
+
+    public function getIsMainBand(): ?bool
+    {
+        return $this->isMainBand;
+    }
+
+    public function setIsMainBand(bool $isMainBand): self
+    {
+        $this->isMainBand = $isMainBand;
+
+        return $this;
+    }
+
+    public function getDuration(): ?\DateInterval
+    {
+        return $this->duration;
+    }
+
+    public function setDuration(?\DateInterval $duration): self
+    {
+        $this->duration = $duration;
 
         return $this;
     }

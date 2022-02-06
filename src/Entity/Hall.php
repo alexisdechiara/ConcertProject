@@ -30,11 +30,6 @@ class Hall
     private $capacity;
 
     /**
-     * @ORM\OneToOne(targetEntity=Band::class, mappedBy="concert", cascade={"persist", "remove"})
-     */
-    private $band;
-
-    /**
      * @ORM\ManyToOne(targetEntity=Building::class, inversedBy="halls")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -75,28 +70,6 @@ class Hall
     public function setCapacity(int $capacity): self
     {
         $this->capacity = $capacity;
-
-        return $this;
-    }
-
-    public function getBand(): ?Band
-    {
-        return $this->band;
-    }
-
-    public function setBand(?Band $band): self
-    {
-        // unset the owning side of the relation if necessary
-        if ($band === null && $this->band !== null) {
-            $this->band->setConcert(null);
-        }
-
-        // set the owning side of the relation if necessary
-        if ($band !== null && $band->getConcert() !== $this) {
-            $band->setConcert($this);
-        }
-
-        $this->band = $band;
 
         return $this;
     }

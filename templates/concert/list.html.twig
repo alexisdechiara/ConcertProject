@@ -1,9 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ConcertController!{% endblock %}
+{% block title %}Concert list{% endblock %}
 
 {% block body %}
-    {% for concert in concerts %}
-        <li>{{  concert }}</li>
-    {% endfor %}
+    <div class="container p-8">
+        <h1 class="text-center text-6xl mt-2 font-medium mb-4">Upcoming  concerts</h1>
+        {{ include("component/poster.html.twig", {category: 'Today', concerts: todayConcerts}) }}
+        {{ include("component/poster.html.twig", {category: 'This week', concerts: thisWeekConcerts}) }}
+        {{ include("component/poster.html.twig", {category: 'This month', concerts: thisMonthConcerts}) }}
+        {{ include("component/poster.html.twig", {category: 'Later', concerts: otherConcerts}) }}
+        {% if is_granted('ROLE_ADMIN') %}
+            {{ include("component/add.html.twig", {valuePath: 'concertNew'})}}
+        {% endif %}
+    </div>
+
 {% endblock %}

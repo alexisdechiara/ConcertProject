@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Band;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -19,32 +20,17 @@ class BandRepository extends ServiceEntityRepository
         parent::__construct($registry, Band::class);
     }
 
-    // /**
-    //  * @return BandFixture[] Returns an array of BandFixture objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
+    /**
+     * @throws NonUniqueResultException If no main band return null
+     */
+    public function findMainOfConcert($id) {
         return $this->createQueryBuilder('b')
-            ->andWhere('b.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('b.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+                    ->join('b.participates', 'p')
+                    ->join('p.concert', 'c')
+                    ->where('c.id = :id')
+                    ->andWhere('p.isMainBand = true')
+                    ->setParameter('id', $id)
+                    ->getQuery()
+                    ->getOneOrNullResult();
     }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?BandFixture
-    {
-        return $this->createQueryBuilder('b')
-            ->andWhere('b.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

@@ -28,7 +28,6 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/polyfill-mbstring" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/asset" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/form" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/translation" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/egulias/email-validator" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/http-client" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/dotenv" />
@@ -59,7 +58,6 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/security-core" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/security-http" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/expression-language" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/maker-bundle" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/security-csrf" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/finder" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/http-kernel" />
@@ -112,8 +110,77 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/doctrine/data-fixtures" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/doctrine/doctrine-fixtures-bundle" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/mime" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/polyfill-intl-normalizer - Copie" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/polyfill-php80 - Copie" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/polyfill-intl-icu - Copie" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/notifier - Copie" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/stopwatch - Copie" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/security-http - Copie" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/password-hasher - Copie" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/routing - Copie" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/polyfill-php73 - Copie" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/security-core - Copie" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/options-resolver - Copie" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/polyfill-php81 - Copie" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/mime - Copie" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/polyfill-mbstring - Copie" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/proxy-manager-bridge - Copie" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/property-access - Copie" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/polyfill-intl-grapheme - Copie" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/service-contracts - Copie" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/translation - Copie" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/phpunit-bridge - Copie" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/validator - Copie" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/var-dumper - Copie" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/web-link - Copie" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/webmozart - Copie/assert" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/twig-bundle - Copie" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/polyfill-intl-idn - Copie" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/monolog-bundle - Copie" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/var-exporter - Copie" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/security-guard - Copie" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/serializer - Copie" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/string - Copie" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/security-csrf - Copie" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/translation-contracts - Copie" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/property-info - Copie" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/yaml - Copie" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/monolog-bridge - Copie" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/web-profiler-bundle - Copie" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/runtime - Copie" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/security-bundle - Copie" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/process - Copie" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/twig-bridge - Copie" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/twig - Copie/extra-bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/twig - Copie/twig" />
+      <excludeFolder url="file://$MODULE_DIR$/var" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor" />
+      <excludeFolder url="file://$MODULE_DIR$/.idea/sonarlint/issuestore/8/4" />
+      <excludeFolder url="file://$MODULE_DIR$/.idea/sonarlint/issuestore/8/7" />
+      <excludeFolder url="file://$MODULE_DIR$/.idea/sonarlint/issuestore/8/a" />
+      <excludeFolder url="file://$MODULE_DIR$/.idea/sonarlint/issuestore/8/f" />
+      <excludeFolder url="file://$MODULE_DIR$/.idea/sonarlint/issuestore/9/3" />
+      <excludeFolder url="file://$MODULE_DIR$/.idea/sonarlint/issuestore/9/4" />
+      <excludeFolder url="file://$MODULE_DIR$/.idea/sonarlint/issuestore/9/6" />
+      <excludeFolder url="file://$MODULE_DIR$/.idea/sonarlint/issuestore/9/9" />
+      <excludeFolder url="file://$MODULE_DIR$/.idea/sonarlint/issuestore/0" />
+      <excludeFolder url="file://$MODULE_DIR$/.idea/sonarlint/issuestore/1" />
+      <excludeFolder url="file://$MODULE_DIR$/.idea/sonarlint/issuestore/2" />
+      <excludeFolder url="file://$MODULE_DIR$/.idea/sonarlint/issuestore/3" />
+      <excludeFolder url="file://$MODULE_DIR$/.idea/sonarlint/issuestore/4" />
+      <excludeFolder url="file://$MODULE_DIR$/.idea/sonarlint/issuestore/5" />
+      <excludeFolder url="file://$MODULE_DIR$/.idea/sonarlint/issuestore/6" />
+      <excludeFolder url="file://$MODULE_DIR$/.idea/sonarlint/issuestore/7" />
+      <excludeFolder url="file://$MODULE_DIR$/.idea/sonarlint/issuestore/a" />
+      <excludeFolder url="file://$MODULE_DIR$/.idea/sonarlint/issuestore/b" />
+      <excludeFolder url="file://$MODULE_DIR$/.idea/sonarlint/issuestore/c" />
+      <excludeFolder url="file://$MODULE_DIR$/.idea/sonarlint/issuestore/d" />
+      <excludeFolder url="file://$MODULE_DIR$/.idea/sonarlint/issuestore/e" />
+      <excludeFolder url="file://$MODULE_DIR$/.idea/sonarlint/issuestore/f" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="tw-elements" level="application" />
+    <orderEntry type="library" name="chart.js" level="application" />
   </component>
 </module>
